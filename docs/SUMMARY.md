@@ -1,7 +1,6 @@
 # Summary
 
-* [算法](algorithm/index.md)
-
+* [Algorithm](algorithm/index.md)
     * [基础](algorithm/basic/index.md)
         * [斐波切纳数列](algorithm/basic/fibonacci.md)
         * [求最大公约数](algorithm/basic/gongyueshu.md)
