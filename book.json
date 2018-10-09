@@ -1,5 +1,9 @@
 {
     "root": "./docs",
-    "plugins" : [ "code" ]
-
+    "plugins" : [ "code", "favicon" ],
+    "pluginsConfig": {
+        "favicon":{
+            "shortcut": "assets/images/favicon.ico"
+        }
+    }
 }
