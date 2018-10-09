@@ -11,8 +11,3 @@
         * [单链表是否有环、环节点、长度](algorithm/linkedlist/circle.md)
     * [符号表](algorithm/symbolTable/index.md)
         * [哈希表](algorithm/symbolTable/hashTable.md)
-
-
-<!-- * [Part II](part2/README.md)
-    * [We love feedback](part2/feedback_please.md)
-    * [Better tools for authors](part2/better_tools.md) -->
