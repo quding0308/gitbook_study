@@ -3,6 +3,7 @@
 * [Algorithm](algorithm/index.md)
     * [基础](algorithm/basic/index.md)
         * [栈](algorithm/basic/stack.md)
+        * [队列](algorithm/basic/queue.md)
     * [数组](algorithm/array/index.md)
     * [链表](algorithm/linkedlist/index.md)
         * [单链表翻转](algorithm/linkedlist/reverseList.md)
