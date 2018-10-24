@@ -13,6 +13,26 @@
 
 查找速度 O(logn)
 
+``` java
+public int bsearch(int[] a, int n, int value) {
+  int low = 0;
+  int high = n - 1;
+
+  while (low <= high) {
+    int mid = (low + high) / 2;
+    if (a[mid] == value) {
+      return mid;
+    } else if (a[mid] < value) {
+      low = mid + 1;
+    } else {
+      high = mid - 1;
+    }
+  }
+
+  return -1;
+}
+```
+
 #### 如何在 1000 万个整数中快速查找某个整数？
 
 我们的内存限制是 100MB，每个数据大小是 8 字节，最简单的办法就是将数据存储在数组中，内存占用差不多是 80MB，符合内存的限制。借助今天讲的内容，我们可以先对这 1000 万数据从小到大排序，然后再利用二分查找算法，就可以快速地查找想要的数据了。
