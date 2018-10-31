@@ -1,6 +1,6 @@
 # Summary
 
-* [Algorithm](algorithm/index.md)
+* [算法](algorithm/index.md)
     * [基础](algorithm/basic/index.md)
         * [栈](algorithm/basic/stack.md)
         * [队列](algorithm/basic/queue.md)
@@ -25,3 +25,5 @@
         * [斐波切纳数列](algorithm/other/fibonacci.md)
         * [求最大公约数](algorithm/other/gongyueshu.md)
         * [约瑟夫问题](algorithm/other/yuesefu.md)
+
+* [ObjC基础](objective-c/index.md)
