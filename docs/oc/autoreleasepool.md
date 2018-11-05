@@ -135,9 +135,6 @@ static inline void pop(void *token) {
 }
 ```
 
-
-
-
 ### 其他
 #### 使用容器的block版本的枚举器时，内部会自动添加一个AutoreleasePool：
 ```

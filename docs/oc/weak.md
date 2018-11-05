@@ -2,45 +2,30 @@
 
 #### 总结
 
-
 1. 对于TaggedPointer对象，weak引用也不需要做额外管理（不需要再全局hash表中做记录）
 
 
 ### 底层存储
 
+#### StripedMap
+包含64个 sidetable 对象，根据 对象的地址 找到某个sidetable对象
 ```
 // SideTables对象，以StripedMap实现，包含64个SideTable对象
 static StripedMap<SideTable> SideTables()
+```
 
+#### SideTable
+SideTable ，用于管理引用计数表(RefcountMap)和 weak 表 (weak_table_t)，并使用 spinlock_lock 自旋锁来防止操作表结构时可能的竞态条件。
 
-// SideTable 
-#### SideTables/RefcountMap/weak_table_t的使用
+SideTables/RefcountMap/weak_table_t的使用
+```
 struct SideTable {
-    spinlock_t slock;   // 锁保证 atomic
-
-    /**
-    RefcountMap disguises its pointers because we 
-    don't want the table to act as a root for `leaks`.
-    对象具体的引用计数存储在这里
-    */
+    // 保存引用计数的散列表
     RefcountMap refcnts;
-
-    /**
-    * The global weak references table. 
-    * Stores object ids as keys, and weak_entry_t structs as their values.
-    */
+    //保存 weak 引用的全局散列表
     weak_table_t weak_table;
-
-    void lock() { slock.lock(); }
-    void unlock() { slock.unlock(); }
-    bool trylock() { return slock.trylock(); }
-
-    // Address-ordered lock discipline for a pair of side tables.
-
-    template<bool HaveOld, bool HaveNew>
-    static void lockTwo(SideTable *lock1, SideTable *lock2);
-    template<bool HaveOld, bool HaveNew>
-    static void unlockTwo(SideTable *lock1, SideTable *lock2);
+    // 保证原子操作的自选锁
+    spinlock_t slock;   // 锁保证 atomic
 };
 
 struct weak_table_t {
@@ -59,56 +44,56 @@ struct weak_entry_t {
 ```
 
 #### weak的实现
-    id objc_initWeak(id *object, id value) {
-        if (!newObj) {
-            *location = nil;
-            return nil;
-        }
-
-        return storeWeak<false/*old*/, true/*new*/, true/*crash*/>
-            (location, (objc_object*)newObj);
+```
+id objc_initWeak(id *object, id value) {
+    if (!newObj) {
+        *location = nil;
+        return nil;
     }
 
-    id objc_loadWeak(id _Nullable *location) {
-        if (!*location) return nil;
-        return objc_autorelease(objc_loadWeakRetained(location));
-    }
+    return storeWeak<false/*old*/, true/*new*/, true/*crash*/>
+        (location, (objc_object*)newObj);
+}
 
-    id objc_loadWeakRetained(id *object) {
+id objc_loadWeak(id _Nullable *location) {
+    if (!*location) return nil;
+    return objc_autorelease(objc_loadWeakRetained(location));
+}
 
-        id result;
+id objc_loadWeakRetained(id *object) {
+    id result;
 
-        SideTable *table;
-        
-    retry:
-        result = *location;
-        if (!result) return nil;
-        
-        table = &SideTables()[result];
-        
-        table->lock();
-        if (*location != result) {
-            table->unlock();
-            goto retry;
-        }
-
-        result = weak_read_no_lock(&table->weak_table, location);
-
+    SideTable *table;
+    
+retry:
+    result = *location;
+    if (!result) return nil;
+    
+    table = &SideTables()[result];
+    
+    table->lock();
+    if (*location != result) {
         table->unlock();
-        return result;
+        goto retry;
     }
 
-    id objc_storeWeak(id _Nullable *location, id obj) {
-        return storeWeak(location, (objc_object *)obj)
-    }
+    result = weak_read_no_lock(&table->weak_table, location);
 
-    void objc_copyWeak(id *dest, id *src) {
-        id obj = objc_loadWeakRetained(src);
-        objc_initWeak(dst, obj);
-        objc_release(obj);
-    }
+    table->unlock();
+    return result;
+}
 
-    void objc_destroyWeak(id *object) {
-       objc_storeWeak(object, nil);
-    }
+id objc_storeWeak(id _Nullable *location, id obj) {
+    return storeWeak(location, (objc_object *)obj)
+}
 
+void objc_copyWeak(id *dest, id *src) {
+    id obj = objc_loadWeakRetained(src);
+    objc_initWeak(dst, obj);
+    objc_release(obj);
+}
+
+void objc_destroyWeak(id *object) {
+    objc_storeWeak(object, nil);
+}
+```
