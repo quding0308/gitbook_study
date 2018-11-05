@@ -4,7 +4,13 @@
     * [ObjC1](oc/oc1.md)
     * [atomic](oc/atomic.md)
     * [synchronized](oc/synchronized.md)
+    * [arc](oc/arc.md)
+    * [引用计数](oc/refCount.md)
+    * [autoreleasepool](oc/autoreleasepool.md)
     * [weak](oc/weak.md)
+    * [runloop](oc/runloop.md)
+    * [AssociatedObject](oc/associatedObject.md)
+
 
 
 * [算法](algorithm/index.md)
