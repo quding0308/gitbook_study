@@ -1,6 +1,6 @@
 ### autoreleasepool
 
-### 插入了什么代码？对obj 怎么处理？
+### 插入了什么代码
 
 代码：
 ```
@@ -17,9 +17,9 @@ void* pool = objc_autoreleasePoolPush();
 objc_autoreleasePoolPop(pool);
 ```
 
-更进一步
+更进一步：
 ```
-- 调用 AutoreleasePoolPage::push() 会生成
+- 调用 AutoreleasePoolPage::push() 会返回 一个哨兵对象的地址，这个地址就是 一个 pool 的开端
 - 当对象调用 autorelease 方法时，会将对象加入 AutoreleasePoolPage 的栈中
 - 调用 AutoreleasePoolPage::pop 方法会向栈中的对象发送 release 消息
 
@@ -32,7 +32,16 @@ void objc_autoreleasePoolPop(void *pool) {
 ```
 
 
-### 底层实现原理
+### 底层实现
+
+整个App的pool 底层都使用一个双向练笔实现
+
+自动释放池是由 AutoreleasePoolPage 以双向链表的方式实现的。
+
+每一个自动释放池都是由一系列的 AutoreleasePoolPage 组成，并且每一个 AutoreleasePoolPage 的大小都是 4096 字节。
+
+App中的所有自动释放池都存储在同一个双向链表中，一个自动释放池的开头是 哨兵对象的，存储了一个nil对象。
+
 #### AutoreleasePoolPage
 ```
 class AutoreleasePoolPage {
@@ -45,8 +54,6 @@ class AutoreleasePoolPage {
     uint32_t hiwat;
 };
 ```
-
-自动释放池是由 AutoreleasePoolPage 以双向链表的方式实现的。每一个自动释放池都是由一系列的 AutoreleasePoolPage 组成，并且每一个 AutoreleasePoolPage 的大小都是 4096 字节
 
 #### AutoreleasePoolPage::push()
 
@@ -68,7 +75,6 @@ static inline void *push() {
 */
 static inline id *autoreleaseFast(id obj)
 {
-   // hotPage 为当前正在使用的 AutoreleasePoolPage
    AutoreleasePoolPage *page = hotPage();
    if (page && !page->full()) {
        return page->add(obj);
@@ -132,30 +138,16 @@ static inline void pop(void *token) {
 
 
 
-### 小结
-
-
+### 其他
+#### 使用容器的block版本的枚举器时，内部会自动添加一个AutoreleasePool：
 ```
-// 把value加到最靠近的autorelease pool中，回调用 [value autorelease]
-id objc_autorelease(id obj) {
-    if (!obj) return obj;
-    if (obj->isTaggedPointer()) return obj;
-    return obj->autorelease();
-}
-
-
-id objc_autoreleaseReturnValue(id value) {
-    // if (prepareOptimizedReturn(ReturnAtPlus1)) return obj;
-
-    return objc_autorelease(obj);
-}
-
-@autoreleasepool {
-    // 
-}
+[array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    // 这里被一个局部@autoreleasepool包围着
+}];
 ```
-
+当然，在普通for循环和for in循环中没有，所以，还是新版的block版本枚举器更加方便。for循环中遍历产生大量autorelease变量时，就需要手加局部AutoreleasePool。
 
 ### 参考
 
 - https://draveness.me/autoreleasepool
+- https://blog.sunnyxx.com/2014/10/15/behind-autorelease/
