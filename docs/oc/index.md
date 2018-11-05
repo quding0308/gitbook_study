@@ -1,10 +1,9 @@
 
 
 ### 底层实现原理
-- autoreleasepool
 - block 底层实现
-- 引用技术 底层实现
-- [约瑟夫问题](algorithm/other/yuesefu.md)
+- runtime 和 对象模型
+- observer 的实现
 
 网络
 - http 知识复习。raw 拷贝一份 懂
