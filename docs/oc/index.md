@@ -1,14 +1,12 @@
 
 
 ### 底层实现原理
-
+### 重点在这里 列出来，常见的 如何回答？
 - [atomic](atomic.md)
 - autoreleasepool
 - block 底层实现
 - 引用技术 底层实现
-- 
 - [约瑟夫问题](algorithm/other/yuesefu.md)
-
 
 网络
 - http 知识复习。raw 拷贝一份 懂
