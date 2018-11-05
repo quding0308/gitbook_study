@@ -26,6 +26,7 @@ id objc_storeWeak(id *object, id value);
 
 ### 引用计数
 
+下一篇文章
 
 
 ### 参考：

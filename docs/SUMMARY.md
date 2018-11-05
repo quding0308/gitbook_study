@@ -11,6 +11,7 @@
     * [AssociatedObject](oc/associatedObject.md)
     * [copy](oc/copy.md)
     * [block](oc/block.md)
+    * [StripedMap](oc/StripedMap.md)
 
 
 * [UI基础](ui/index.md)
