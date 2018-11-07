@@ -51,7 +51,6 @@ objc_setAssociatedObject(self, @selector(selectedView), selectView, OBJC_ASSOCIA
 
 objc_getAssociatedObject(self, @selector(kd_selectedView));
 
-
 // policy
 typedef OBJC_ENUM(uintptr_t, objc_AssociationPolicy) {
     OBJC_ASSOCIATION_ASSIGN = 0,           /**< Specifies a weak reference to the associated object. */
