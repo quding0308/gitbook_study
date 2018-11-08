@@ -13,9 +13,12 @@
     * [block](oc/block.md)
     * [StripedMap](oc/StripedMap.md)
 
-
 * [UI基础](ui/index.md)
+    * [显示器原理](ui/screen.md)
     * [render](ui/render.md)
+    * [cpu渲染](ui/cpu.md)
+    * [gpu渲染](ui/gpu.md)
+
     * [animation](ui/animation.md)
     * [layout](ui/layout.md)
 
@@ -25,6 +28,7 @@
     * [基础](algorithm/basic/index.md)
         * [栈](algorithm/basic/stack.md)
         * [队列](algorithm/basic/queue.md)
+        * [B树](algorithm/basic/b-tree.md)
     * [排序](algorithm/sort/index.md)
         * [基础排序](algorithm/sort/sort1.md)
         * [归并排序](algorithm/sort/sort2.md)
