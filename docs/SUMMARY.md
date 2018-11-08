@@ -12,6 +12,8 @@
     * [copy](oc/copy.md)
     * [block](oc/block.md)
     * [StripedMap](oc/StripedMap.md)
+    * [build](oc/build.md)
+    * [startup](oc/startup.md)
 
 * [UI基础](ui/index.md)
     * [显示器原理](ui/screen.md)
@@ -22,6 +24,8 @@
     * [animation](ui/animation.md)
     * [layout](ui/layout.md)
 
+* [other](other/index.md)
+    * [tcp](other/tcp.md)
 
 
 * [算法](algorithm/index.md)
