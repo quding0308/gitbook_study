@@ -26,7 +26,8 @@
 
 * [other](other/index.md)
     * [tcp](other/tcp.md)
-
+    * [xlog](other/xlog.md)
+    * [https](other/https.md)
 
 * [算法](algorithm/index.md)
     * [基础](algorithm/basic/index.md)
