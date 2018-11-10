@@ -17,6 +17,8 @@ TCP是面向连接的、可靠的流协议。
 
 ### 1. 连接管理
 
+![](http://pc5ouzvhg.bkt.clouddn.com/WechatIMG246.jpeg)
+
 #### 建立连接 
 
 3次handshake
@@ -143,6 +145,10 @@ TCP 层的超时重传机制可以发现，当发生超时重传时，重传的�
 ##### 自动上传，指定某个用户的日志上传
 
 更多：https://mp.weixin.qq.com/s/PnICVDyVuMSyvpvTrdEpSQ?
+
+### tcp头部格式
+
+![](http://pc5ouzvhg.bkt.clouddn.com/WechatIMG245.jpeg)
 
 ### 参考
 - mars：

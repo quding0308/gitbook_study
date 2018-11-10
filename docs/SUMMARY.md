@@ -24,8 +24,13 @@
     * [animation](ui/animation.md)
     * [layout](ui/layout.md)
 
+* [mvvm](mvvm/index.md)
+    * [rx-mvvm](mvvm/rx-mvvm.md)
+    * [rxswift](mvvm/rxswift.md)
+  
 * [other](other/index.md)
     * [tcp](other/tcp.md)
+    * [mars](other/mars.md)
     * [xlog](other/xlog.md)
     * [https](other/https.md)
 
