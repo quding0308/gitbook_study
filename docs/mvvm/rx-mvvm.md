@@ -6,7 +6,7 @@
 
 - vc代码更少，代码拆分更清晰，更容易维护
 - 更方便测试
-- 更方便复用 view 或 viewmodel
+- 更方便复用 view
 
 具体模块包括：controller、View、Model、逻辑代码
 

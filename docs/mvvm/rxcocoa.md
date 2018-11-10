@@ -84,6 +84,7 @@ observable.bind(to: textField.rx.text)
 1. 不产生error
 2. 订阅 和 监听 都在 主线程
 3. 共享状态变化
+4. 没有初始值
 
 使用：
 
