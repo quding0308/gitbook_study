@@ -71,4 +71,4 @@ UI渲染流程，事件响应机制
 - iOS签名原理：http://blog.cnbang.net/tech/3386/   【绘制一张mindmap】
 - 线程 和 进程 的不同  Android单启动一个进程，面向进程编程的不同？
 
-检测、量化 -> 瓶颈 -> 优化 
+

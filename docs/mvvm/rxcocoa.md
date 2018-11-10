@@ -23,9 +23,9 @@ extension Reactive where Base: UITabBarItem {
 
 Observable sequence，具有以下特征：
 
-1. 重来不是失败(有默认值)
+1. 不会失败(如果失败，会返回有默认值)
 2. 在主线程处理 observer
-3. 共享状态变化
+3. 共享状态变化，有 shareReplay(1) 的行为
 
 Driver 主要最适合用来更新 View
 
@@ -46,7 +46,7 @@ let driver = observable
 
 1. 不产生error
 2. 订阅 和 监听 都在 主线程
-3. 共享状态变化
+3. 共享状态变化，有 shareReplay(1) 的行为
 
 使用：
 
