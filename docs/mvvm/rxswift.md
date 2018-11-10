@@ -29,3 +29,7 @@ http://blog.quding0308.com/blog/rxswift/2018/09/17/rxswift-basic.html
 
 http://blog.quding0308.com/blog/rxswift/2018/09/18/rxswift-operation.html
 
+
+### 参考
+
+- https://beeth0ven.github.io/RxSwift-Chinese-Documentation/content/why_rxswift.html

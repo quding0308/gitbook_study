@@ -2,6 +2,12 @@
 
 主要目的：对于日常业务开发，如何组织代码结构。
 
+优点：
+
+- vc代码更少，代码拆分更清晰，更容易维护
+- 更方便测试
+- 更方便复用 view 或 viewmodel
+
 具体模块包括：controller、View、Model、逻辑代码
 
 要面对的问题：
@@ -136,3 +142,7 @@ class RxLoginVM: NSObject {
 ### demo地址
 
 https://github.com/quding0308/RxLogin-MVVM-Example
+
+### 参考
+
+- https://objccn.io/issue-13-1/
