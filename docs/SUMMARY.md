@@ -26,7 +26,8 @@
 
 * [mvvm](mvvm/index.md)
     * [rx-mvvm](mvvm/rx-mvvm.md)
-    * [rxswift](mvvm/rxswift.md)
+    * [RxSwift](mvvm/rxswift.md)
+    * [RxCocoa](mvvm/rxcocoa.md)
   
 * [other](other/index.md)
     * [tcp](other/tcp.md)

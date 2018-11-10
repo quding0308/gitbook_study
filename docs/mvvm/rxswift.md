@@ -9,6 +9,7 @@ An API for asynchronous programming with observable streams
 - Observable
 - Observer
 - Subject (既是Observeable 又是 Observer)
+- Driver
 - Disposable
 - Scheduler
 
@@ -27,3 +28,4 @@ http://blog.quding0308.com/blog/rxswift/2018/09/17/rxswift-basic.html
 详细参考：
 
 http://blog.quding0308.com/blog/rxswift/2018/09/18/rxswift-operation.html
+
