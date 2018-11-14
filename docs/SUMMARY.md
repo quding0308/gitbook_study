@@ -23,6 +23,7 @@
     * [gpu渲染](ui/gpu.md)
     * [animation](ui/animation.md)
     * [layout](ui/layout.md)
+    * [response-chain](ui/response-chain.md)
 
 * [mvvm](mvvm/index.md)
     * [rx-mvvm](mvvm/rx-mvvm.md)
@@ -30,6 +31,7 @@
     * [RxCocoa](mvvm/rxcocoa.md)
   
 * [other](other/index.md)
+    * [common](other/comm.md)
     * [tcp](other/tcp.md)
     * [mars](other/mars.md)
     * [xlog](other/xlog.md)
