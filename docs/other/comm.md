@@ -82,3 +82,42 @@ tcp 发送的每个包都有seq，收到后 会返回 ack = seq + 1，告知对�
 1. 方案1. 存入本地db认为应用层成功。成功后，像server 发送一个 ack 确认，否则 server 会重发
 2. 方案2.每个message 都有 seq。 db中保存 lastReceivedSeqId。如果接收到新消息后，发现seq 不连续，就认为丢失了数据，需要重新fetch
 3. 方案3.本地保存最新的updateTime(server返回的)，获取到新消息，并且存入 db 后，更新本地的updateTime。【udpateTime实际是最新一条数据的时间 】 
+
+
+### property 的默认修饰符
+- 对象。(atomic, strong, readwrite)
+- 基本数据类型。  (atomic, assign, readwrite)
+
+### KVO原理
+
+#### 使用：
+
+```
+- (void)init {}
+    [obj addObserver:self forKeyPath:@"obj_property_name" options:NSKeyValueChangeNewKey context:nil];
+}
+- (void)dealloc {
+    [obj removeObserver:self forKeyPath:@"obj_property_name"];
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    //
+}
+```
+
+#### 具体原理
+1. kvo 基于runtime 实现
+2. 当Person对象的某个 property 被观察后，会重新生成一个setter 在复制的前后调用 willChangeValueForKey: 和 didChangeValueForKey: ，从而 observeValueForKey:ofObject:change:context: 也会被调用
+3. 实际Person对象，会生成一个Person的子类 NSKVONotifying_Person ，然后Person对象的isa指针指向 NSKVONotifying_Person。
+
+NSKVONotifying_Person 的set重写为：
+
+```
+- (void)setName:(NSString *)name {
+    [self willChangeValueForKey: @"name"];
+    [super setName: name]; // 调用父类的setName，即使我们重写了setName 也会正常调用
+    [self didChangeValueForKey: @"name"];
+}
+```
+
+
+参考：https://zhuanlan.zhihu.com/p/34273366
