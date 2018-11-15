@@ -40,6 +40,11 @@ pthread_rwlock
 
 #### 互斥锁、自旋锁、原子性、并发、并行
 
+都是为了解决 对某项资源的互斥使用。一个资源 
+
+Sipnlock
+
+mutex_lock
 
 **动态库和静态库的区别**
 
@@ -49,6 +54,9 @@ pthread_rwlock
 #### data race
 
 资源竞争，保证资源的一致性 当有写操作的时候，尤其要注意。
+
+参考：
+- http://www.cocoachina.com/ios/20161129/18216.html
 
 **正则表达式在项目中的使用**
 

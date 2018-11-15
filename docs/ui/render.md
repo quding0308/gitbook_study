@@ -53,6 +53,30 @@ App的主线程开始在 CPU 中计算显示内容，比如视图的创建、布
 * 图片的解码
 * 绘制 drawRect CG开头的绘制
 
+
+#### 优化思路
+
+tableview 缓存高度 使用 fd 
+
+http://blog.sunnyxx.com/2015/05/17/cell-height-calculation/
+
+
+富文本 缓存下来 复用
+
+图片子线程 解码，主线程直接渲染
+
+尽量使用assert Images.xcassets
+
+尽量少用 alpha。如果一个图片有透明通道，但是不需要实现透明效果，可以使用 opaque=yes 关闭透明通道渲染。 
+
+减少离屏渲染
+
+layer.mask
+layer.cornerRadius
+layer.shadows
+
+
+
 ### GPU消耗：
 
 * 纹理的渲染
@@ -70,8 +94,7 @@ App的主线程开始在 CPU 中计算显示内容，比如视图的创建、布
 - 找lt 发 resume，确定 几个选项
 - Autolayout 渲染优化：https://juejin.im/post/5bd5a546f265da0af033cee6
 - https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/#32
-
-
-
+- https://zhuanlan.zhihu.com/p/35693019
+  
 
 
