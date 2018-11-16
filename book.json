@@ -1,9 +1,14 @@
 {
     "root": "./docs",
-    "plugins" : [ "code", "favicon" ],
+    "plugins" : [ "code", "favicon", "expandable-chapters" ],
     "pluginsConfig": {
         "favicon":{
             "shortcut": "assets/images/favicon.ico"
         }
-    }
+    },
+    "theme-default": {
+        "showLevel": true
+    },
+    "title": "学习笔记",
+    "author": "quding0308"
 }

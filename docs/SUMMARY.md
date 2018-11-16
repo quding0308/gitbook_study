@@ -30,6 +30,9 @@
     * [RxSwift](mvvm/rxswift.md)
     * [RxCocoa](mvvm/rxcocoa.md)
   
+* [web](web/index.md)
+    * [javascript](web/js6.md)
+  
 * [other](other/index.md)
     * [common](other/comm.md)
     * [tcp](other/tcp.md)
