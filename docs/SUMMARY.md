@@ -15,6 +15,7 @@
     * [build](oc/build.md)
     * [startup](oc/startup.md)
     * [objc-start](oc/objc-start.md)
+    * [Swift与ObjC比较](oc/swift-oc.md)
 
 * [UI基础](ui/index.md)
     * [显示器原理](ui/screen.md)
@@ -32,6 +33,9 @@
   
 * [web](web/index.md)
     * [javascript](web/js6.md)
+  
+* [android](android/index.md)
+    * [activity](android/activity.md)
   
 * [other](other/index.md)
     * [common](other/comm.md)
