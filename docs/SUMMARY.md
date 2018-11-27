@@ -75,3 +75,4 @@
         * [约瑟夫问题](algorithm/other/yuesefu.md)
         * [最长公共子串](algorithm/other/lcsubstring.md)
         * [最长公共子序列](algorithm/other/lcsubsequence.md)
+        * [背包问题](algorithm/other/dp-bag.md)
