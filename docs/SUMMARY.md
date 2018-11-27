@@ -51,6 +51,7 @@
         * [栈](algorithm/basic/stack.md)
         * [队列](algorithm/basic/queue.md)
         * [B树](algorithm/basic/b-tree.md)
+        * [动态规划](algorithm/basic/DynamicProgramming.md)
     * [排序](algorithm/sort/index.md)
         * [基础排序](algorithm/sort/sort1.md)
         * [归并排序](algorithm/sort/sort2.md)
@@ -72,3 +73,5 @@
         * [斐波切纳数列](algorithm/other/fibonacci.md)
         * [求最大公约数](algorithm/other/gongyueshu.md)
         * [约瑟夫问题](algorithm/other/yuesefu.md)
+        * [最长公共子字符串](algorithm/other/lcsubstring.md)
+        * [最长公共子序列](algorithm/other/lcsubsequence.md)
