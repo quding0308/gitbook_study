@@ -73,5 +73,5 @@
         * [斐波切纳数列](algorithm/other/fibonacci.md)
         * [求最大公约数](algorithm/other/gongyueshu.md)
         * [约瑟夫问题](algorithm/other/yuesefu.md)
-        * [最长公共子字符串](algorithm/other/lcsubstring.md)
+        * [最长公共子串](algorithm/other/lcsubstring.md)
         * [最长公共子序列](algorithm/other/lcsubsequence.md)
