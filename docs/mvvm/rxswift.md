@@ -1,4 +1,4 @@
-### rxswift
+### RxWwift
 
 An API for asynchronous programming with observable streams
 
@@ -9,7 +9,6 @@ An API for asynchronous programming with observable streams
 - Observable
 - Observer
 - Subject (既是Observeable 又是 Observer)
-- Driver
 - Disposable
 - Scheduler
 
@@ -40,11 +39,6 @@ When does an Observable begin emitting its sequence of items? It depends on the 
 Variable、ControlProperty、ControlEvent、Driver等都是 Hot Observable 。不管有没有订阅者，都会发出 element 。Observable 中一般会有多个 element 。会共享状态变化。
 
 Async Operation、Http Connection等是 Cold Observable 。有了订阅者后才会发出 element 。Observable 一般只有一个 element。不会共享状态变化。
-
-
-#### 共享状态的Observable
-
-
 
 ### 参考
 
