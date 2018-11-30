@@ -42,11 +42,12 @@ let driver = observable
 
 #### ControlProperty
 
-既是Observable，又是 Observer，用于封装UI控件的事件，具有一下特点：
+既是Observable，又是 Observer，用于封装UI控件的属性，具有一下特点：
 
 1. 不产生error
 2. 订阅 和 监听 都在 主线程
 3. 共享状态变化，有 shareReplay(1) 的行为
+4. 有初始值
 
 使用：
 
@@ -79,7 +80,7 @@ observable.bind(to: textField.rx.text)
 
 #### ControlEvent
 
-既是 Observable，又是 Observer，用于封装 UI控件的属性，具有以下特点：
+Observable，用于封装 UI控件的事件，具有以下特点：
 
 1. 不产生error
 2. 订阅 和 监听 都在 主线程
