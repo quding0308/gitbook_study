@@ -54,6 +54,8 @@
         * [队列](algorithm/basic/queue.md)
         * [B树](algorithm/basic/b-tree.md)
         * [动态规划](algorithm/basic/DynamicProgramming.md)
+        * [图](algorithm/basic/graph.md)
+        * [图的BFS、DFS](algorithm/basic/graph-bfs-dfs.md)
     * [排序](algorithm/sort/index.md)
         * [基础排序](algorithm/sort/sort1.md)
         * [归并排序](algorithm/sort/sort2.md)
