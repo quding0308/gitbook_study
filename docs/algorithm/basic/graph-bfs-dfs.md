@@ -1,5 +1,7 @@
-### 图的BFS 和 DFS
+## 图的BFS 和 DFS
 
+
+### 图的定义
 ``` java 
 public class Graph { // 无向图
   private int v; // 顶点的个数
@@ -20,7 +22,7 @@ public class Graph { // 无向图
 }
 ```
 
-bfs
+### bfs 的java实现
 
 ``` java
 public void bfs(int s, int t) {
@@ -60,7 +62,7 @@ private void print(int[] prev, int s, int t) { // 递归打印 s->t 的路径
 ```
 ![](https://static001.geekbang.org/resource/image/ea/23/ea00f376d445225a304de4531dd82723.jpg)
 
-dfs
+### dfs的java实现
 
 ``` java 
 boolean found = false; // 全局变量或者类成员变量
@@ -95,7 +97,7 @@ private void recurDfs(int w, int t, boolean[] visited, int[] prev) {
 ```
 ![](https://static001.geekbang.org/resource/image/87/85/8778201ce6ff7037c0b3f26b83efba85.jpg)
 
-Swift 版本的bfs和dfs 实现：
+### Swift 版本的bfs和dfs 实现：
 
 https://github.com/quding0308/KDAlgorithmKit/blob/master/KDAlgorithmKit/Classes/DataStructure/Graph.swift
 
