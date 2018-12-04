@@ -50,6 +50,7 @@
 
 * [算法](algorithm/index.md)
     * [基础](algorithm/basic/index.md)
+        * [递归](algorithm/basic/recursion.md)
         * [栈](algorithm/basic/stack.md)
         * [队列](algorithm/basic/queue.md)
         * [B树](algorithm/basic/b-tree.md)
