@@ -43,6 +43,46 @@ JSONDecoder decode json对象的时候，基本基于 KeyedDecodingContainer
 
 可以通过 KeyedEncodingContainer 或 KeyedDecodingContainer 增加扩展，重写对应的encode decode 方法，提升 json 转 对象的兼容性
 
+```
+
+extension KeyedDecodingContainer {
+    func decodeIfPresent(_ type: String.Type, forKey key: K) throws -> String? {
+        var defaultValue: String?
+        if let key = key as? YZJCodingKey {
+            let value = key.defaultValue(key: key.stringValue)
+            defaultValue = value as? String
+        }
+        
+        do {
+            let value = try decode(type, forKey: key)
+            return value
+        }catch {
+            let err = error as! DecodingError
+            switch err {
+            case .typeMismatch(_, _):
+                if let value = try? decode(Int.self, forKey: key) {
+                    return String(value) ?? defaultValue
+                }
+                if let value = try? decode(Float.self, forKey: key) {
+                    return String(value) ?? defaultValue
+                }
+                if let value = try? decode(Bool.self, forKey: key) {
+                    return String(value) ?? defaultValue
+                }
+                if let anyObject = try? decode(YZJAnyDecodable.self, forKey: key) {
+                    if let data = try? JSONSerialization.data(withJSONObject: anyObject.value, options: JSONSerialization.WritingOptions.prettyPrinted),
+                        let str = String.init(data: data, encoding: String.Encoding.utf8) {
+                        return str
+                    }
+                }
+            default: break
+            }
+        }
+        return defaultValue
+    }    
+}
+```
+
 ### 参考
 
 - https://xiaozhuanlan.com/topic/9582316047
