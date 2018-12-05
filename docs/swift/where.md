@@ -43,7 +43,6 @@ func test1() {
 }
 ```
 
-
 #### 只给遵守 MyProtocol 协议的 MyClass类或子类增加扩展
 
 ```
@@ -53,7 +52,7 @@ protocol MyProtocol {
 }
 
 class MyClass {
-    
+    //
 }
 
 // 只给遵守 MyProtocol 协议的 MyClass类或子类增加扩展
