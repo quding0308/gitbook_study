@@ -90,8 +90,6 @@ layer.shadows
 - 更新时，只更新有变化的内容 (RXDataSource的思路)
   
 ### 参考：
-- 重点的UI相关
-- 找lt 发 resume，确定 几个选项
 - Autolayout 渲染优化：https://juejin.im/post/5bd5a546f265da0af033cee6
 - https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/#32
 - https://zhuanlan.zhihu.com/p/35693019
