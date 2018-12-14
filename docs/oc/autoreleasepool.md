@@ -34,7 +34,7 @@ void objc_autoreleasePoolPop(void *pool) {
 
 ### 底层实现
 
-整个App的pool 底层都使用一个双向练笔实现
+整个App的pool 底层都使用一个双向链表实现
 
 自动释放池是由 AutoreleasePoolPage 以双向链表的方式实现的。
 

@@ -13,6 +13,7 @@
     * [block](oc/block.md)
     * [StripedMap](oc/StripedMap.md)
     * [build](oc/build.md)
+    * [GCD](oc/gcd.md)
     * [startup](oc/startup.md)
     * [objc-start](oc/objc-start.md)
     * [Swift与ObjC比较](oc/swift-oc.md)
