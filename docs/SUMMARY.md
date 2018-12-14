@@ -52,6 +52,12 @@
     * [https](other/https.md)
     * [正则表达式](other/rejex.md)
 
+* [App优化](optimize/index.md)
+    * [Crash优化](optimize/crash.md)
+    * [卡顿优化](optimize/kadun.md)
+    * [内存优化](optimize/memory.md)
+
+
 * [算法](algorithm/index.md)
     * [基础](algorithm/basic/index.md)
         * [递归](algorithm/basic/recursion.md)
