@@ -16,6 +16,7 @@
     * [startup](oc/startup.md)
     * [objc-start](oc/objc-start.md)
     * [Swift与ObjC比较](oc/swift-oc.md)
+    * [音频](oc/audio.md)
 
 * [Swift](swift/index.md)
     * [where](swift/where.md)
