@@ -34,13 +34,13 @@ struct objc_class {
 
  id
  
- ```
+```
 typedef struct objc_object *id;
 
 struct objc_object {
-    Class isa;
+    Class isa;  // 指向 class
 }
- ```
+```
 
  SEL
  
