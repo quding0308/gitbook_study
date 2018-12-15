@@ -1,6 +1,9 @@
 # Summary
 
 * [oc](oc/index.md)
+    * [runtime-对象模型](oc/runtime-model.md)
+    * [runtime-消息分发](oc/runtime-msg.md)
+    * [runtime-API](oc/runtime-api.md)
     * [atomic](oc/atomic.md)
     * [synchronized](oc/synchronized.md)
     * [arc](oc/arc.md)
@@ -18,9 +21,6 @@
     * [objc-start](oc/objc-start.md)
     * [Swift与ObjC比较](oc/swift-oc.md)
     * [音频](oc/audio.md)
-    * [runtime-对象模型](oc/runtime-model.md)
-    * [runtime-消息分发](oc/runtime-msg.md)
-    * [runtime-API](oc/runtime-api.md)
 
 * [Swift](swift/index.md)
     * [where](swift/where.md)
