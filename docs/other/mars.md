@@ -1,6 +1,13 @@
 
 ### mars
 
+ask
+```
+1. mars 相比 tcp 的优化点
+2. mars 相比 websocket 的优化点
+
+```
+
 #### 弱网优化
 
 弱网情况下 上下行 3k/2k mars 明显优于 websocket，websocket 基本收不到消息

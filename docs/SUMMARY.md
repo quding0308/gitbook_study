@@ -55,6 +55,7 @@
     * [common](other/comm.md)
     * [tcp](other/tcp.md)
     * [mars](other/mars.md)
+    * [WebSocket](other/websocket.md)
     * [xlog](other/xlog.md)
     * [https](other/https.md)
     * [正则表达式](other/rejex.md)
