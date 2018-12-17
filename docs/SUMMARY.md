@@ -36,6 +36,8 @@
     * [animation](ui/animation.md)
     * [layout](ui/layout.md)
     * [响应链](ui/response-chain.md)
+    * [图片解压缩](ui/image-render.md)
+    * [富文本](ui/richtext.md)
 
 * [mvvm](mvvm/index.md)
     * [rx-mvvm](mvvm/rx-mvvm.md)
