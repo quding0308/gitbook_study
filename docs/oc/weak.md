@@ -1,9 +1,24 @@
 ### weak
 
+ask 
+```
+StripMap<SideTable>  // 64 个
+
+SideTable {
+    RefcountMap refcnts;
+    weak_table_t weak_table;
+}
+
+weak_table_t {
+    weak_entry_t *weak_entries;
+}
+
+
+```
+
 #### 总结
 
 1. 对于TaggedPointer对象，weak引用也不需要做额外管理（不需要再全局hash表中做记录）
-
 
 ### 底层存储
 
@@ -39,7 +54,6 @@ struct weak_entry_t {
     DisguisedPtr<objc_object> referent; // 某个对象的指针
     weak_referrer_t *referrers; // 数组 对这个对象的弱引用的变量地址存在这里
 };
-
 
 ```
 
@@ -96,4 +110,11 @@ void objc_copyWeak(id *dest, id *src) {
 void objc_destroyWeak(id *object) {
     objc_storeWeak(object, nil);
 }
+```
+
+#### strong 实现
+
+```
+//hash table   key 为obj，value 为 引用计数
+typedef objc::DenseMap<DisguisedPtr<objc_object>,size_t,true> RefcountMap;
 ```

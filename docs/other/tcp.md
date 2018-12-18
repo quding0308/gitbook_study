@@ -37,6 +37,9 @@ TCP是面向连接的、可靠的协议。
 
 ![](http://pc5ouzvhg.bkt.clouddn.com/WechatIMG246.jpeg)
 
+详细看连接管理的知识：
+https://blog.csdn.net/kuangdacaikuang/article/details/53386544
+
 #### 建立连接 
 
 3次handshake
@@ -116,7 +119,4 @@ mars中，每隔4.5 min会发送一次智能心跳。时间 会随着网络的�
 ![](http://pc5ouzvhg.bkt.clouddn.com/WechatIMG245.jpeg)
 
 ### 参考
-- mars：
-- （流是不间断的数据结构，类似管道中的水流）
 - https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&mid=2649286458&idx=1&sn=320f690faa4f97f7a49a291d4de174a9&chksm=8334c3b8b4434aae904b6d590027b100283ef175938610805dd33ca53f004bd3c56040b11fa6#rd
-- 

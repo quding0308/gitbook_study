@@ -10,7 +10,6 @@
 
 线程不安全就是多线程环境下，执行可能不会得到正确的结果。
 
-
 ### property的修饰符： atomic 与 nonatomic 
 
 实际是 对 set 和 get 方法的调整 如果是 atomic 则使用 spinlock_t 来加锁
@@ -32,7 +31,7 @@ static setProperty(...) {
 static id objc_getProperty(...) {
     id *slot = (id*) ((char*)self + offset);
     if (!atomic) return *slot;  // nonatomic
-        
+    
     // Atomic retain release world
     spinlock_t& slotlock = PropertyLocks[slot];
     slotlock.lock();

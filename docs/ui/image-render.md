@@ -131,11 +131,14 @@ CGImageRef YYCGImageCreateDecodedCopy(CGImageRef imageRef, BOOL decodeForDisplay
 }
 ```
 
+流程：
+```
+CGBitmapContextCreate -> CGContextDrawImage -> CGBitmapContextCreateImage
+```
 
 ### 图片做压缩，去掉 alpha 通道
 
 在 SD 中，无法在子线程解压带有 alpha 通道的图片
-
 
 ### 参考
 - http://blog.leichunfeng.com/blog/2017/02/20/talking-about-the-decompression-of-the-image-in-ios/

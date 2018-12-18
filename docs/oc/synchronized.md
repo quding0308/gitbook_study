@@ -1,6 +1,24 @@
 
 ### @synchronized
 
+ask
+```
+StripMap<SyncList>
+
+struct SyncList {
+    spinlock_t lock;
+    SyncData *data;
+}
+
+// 一个 obj 对应一个 SyncData 对象，对应一个 递归锁
+struct SyncData {
+    recusive_mutex_t mutex;
+    SyncData *next;
+    DisguisedPtr<objc_object> object;
+}
+
+```
+
 具体使用：
 ```
 NSObject* obj = [NSObject new];

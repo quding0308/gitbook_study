@@ -11,7 +11,6 @@ Audio分为 和 App内Audio处理
     AVAudioPlayer
     AVAudioRecorder
 
- 
 #import <AudioToolbox/AudioToolbox.h>
 提供了 record、play audio，convert formats，parse audio streams，configure audio session
 

@@ -26,11 +26,11 @@ objc_autoreleasePoolPop(pool);
 void *objc_autoreleasePoolPush(void) {
     return AutoreleasePoolPage::push();
 }
+
 void objc_autoreleasePoolPop(void *pool) {
     AutoreleasePoolPage::pop(pool);
 }
 ```
-
 
 ### 底层实现
 
@@ -142,7 +142,7 @@ static inline void pop(void *token) {
     // 这里被一个局部@autoreleasepool包围着
 }];
 ```
-当然，在普通for循环和for in循环中没有，所以，还是新版的block版本枚举器更加方便。for循环中遍历产生大量autorelease变量时，就需要手加局部AutoreleasePool。
+当然，在普通for循环和for in循环中没有，所以，还是新版的block版本枚举器更加方便。for循环中遍历产生大量autorelease变量时，就需要手加局部AutoreleasePool
 
 ### 参考
 

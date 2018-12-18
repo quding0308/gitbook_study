@@ -38,6 +38,7 @@
     * [响应链](ui/response-chain.md)
     * [图片解压缩](ui/image-render.md)
     * [富文本](ui/richtext.md)
+    * [CALayer 子类](ui/calayer.md)
 
 * [mvvm](mvvm/index.md)
     * [rx-mvvm](mvvm/rx-mvvm.md)
@@ -59,6 +60,7 @@
     * [mars](other/mars.md)
     * [WebSocket](other/websocket.md)
     * [xlog](other/xlog.md)
+    * [http](other/http.md)
     * [https](other/https.md)
     * [正则表达式](other/rejex.md)
 

@@ -20,12 +20,11 @@ struct __main_block_impl_0 {
 // 使用
 static void __main_block_func_0(struct __main_block_impl_0 *__cself) {
   __Block_byref_a_0 *a = __cself->a; // bound by ref
-            int b = (a->__forwarding->a);
-            int m = 10;
- }
+  int b = (a->__forwarding->a);
+  int m = 10;
+}
 
 ```
-
 
 #### Block类型
 
@@ -57,12 +56,11 @@ int main(int argc, char * argv[]) {
     __block int a = 10;
 
     Block block1 = ^() {
-//        print("123");
-        
-        a = 11;
-        //        self.string = @"456";
+      // print("123");
+      
+      a = 11;
+      // self.string = @"456";
     };
-    
 }
 
 /////////////编译后的代码////////////
@@ -95,10 +93,6 @@ static void __main_block_func_0(struct __main_block_impl_0 *__cself){
         (a->__forwarding->a) = 11;
 }
 ```
-
-
-
-
 
 
 ### 参考

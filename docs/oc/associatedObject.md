@@ -1,5 +1,30 @@
-### AssociatedObject
+## AssociatedObject
 
+ask
+```
+class AssociationsManager {
+    // key 为 obj，value 为 ObjectAssociationMap 对象
+    AssociationsHashMap *map;
+    static spinlock_t _lock;
+}
+
+// key 为 自定义的key @selector(method_name)， value 为  ObjcAssociation
+ObjectAssociationMap
+
+class ObjcAssociation {
+    uintptr_t _policy;
+    id _value;
+};
+
+AssociationsHashMap
+    { 
+        key: obj, 
+        value: ObjectAssociationMap {
+            key : your_name,
+            value: ObjcAssociation
+        }
+    }
+```
 
 #### AssociationsManager
 AssociationsManager 为全局的单例  

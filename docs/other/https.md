@@ -3,8 +3,6 @@
 
 #### 基本流程
 
-详细流程：https://www.jianshu.com/p/b0b6b88fe9fe
-
 ![](http://pc5ouzvhg.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-09%20%E4%B8%8B%E5%8D%885.02.18.png)
 
 1 客户端（通常是浏览器）先向服务器发出加密通信的请求 client Hello
@@ -49,3 +47,4 @@ PreMaster Secret是在客户端使用RSA或者Diffie-Hellman等加密算法生�
 ### 参考
 
 - https://segmentfault.com/a/1190000015155372
+- 详细流程：https://www.jianshu.com/p/b0b6b88fe9fe

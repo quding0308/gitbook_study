@@ -5,7 +5,7 @@ ARC的引用计数的存储有3种方式
 - 散列表
 
 ### TaggedPointer
-TaggedPointer专门用来存储小的对象（例如 NSNumber、NSDate、小字符串），TaggedPointer指针的地址不再仅仅是地址了，而是存储了真正的值。它的内存并不存储在堆中，也不需要调用malloc 和 free。
+TaggedPointer专门用来存储小的对象（例如 NSNumber、NSDate、小字符串），TaggedPointer指针的地址不再仅仅是地址了，而是存储了真正的值。它的内存并不存储在堆中，也不需要调用malloc 和 free
 
 在64位机器上，并且是iPhone平台支持TaggedPointer
 
@@ -45,7 +45,9 @@ inline uintptr_t objc_object::rootRetainCount() {
     if (isTaggedPointer()) return (uintptr_t)this;
 }
 ```
+
 对于TaggedPointer对象，weak引用也不需要做额外管理（不需要再全局hash表中做记录）
+
 ```
 id weak_register_no_lock(weak_table_t *weak_table, id referent_id,
                     id *referrer_id, bool crashIfDeallocating)
@@ -62,7 +64,9 @@ id weak_read_no_lock(weak_table_t *weak_table, id *referrer_id)
     if (referent->isTaggedPointer()) return (id)referent;
 }
 ```
+
 ### is-a指针存储引用计数
+
 用 64 bit 存储一个内存地址显然是种浪费，毕竟很少有那么大内存的设备。于是可以优化存储方案，用一部分额外空间存储其他内容。isa 指针第一位为 1 即表示使用优化的 isa 指针。
 
 在 64 位环境下，优化的 isa 指针并不是就一定会存储引用计数，毕竟用 19bit （iOS 系统）保存引用计数不一定够。需要注意的是这 19 位保存的是引用计数的值减一。has_sidetable_rc 的值如果为 1，那么引用计数会存储在一个叫 SideTable 的类的属性中，后面会详细讲。

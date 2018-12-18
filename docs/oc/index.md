@@ -80,3 +80,29 @@ UI渲染流程，事件响应机制
 - map 与 flatmap
 - differentor 的使用，tableview 优化 再整理下
 - block
+
+### new 与 alloc 区别
+
+```
+// 使用 _zoneAlloc 分配内存，自己显示调用 initXX 来初始化对象
++ alloc {
+    return (*_zoneAlloc)((Class)self, 0, malloc_default_zone());
+}
+
+// 使用 _alloc 分配内存，只能使用 init 初始化对象
++ new {
+    id newObject = (*_alloc)((Class)self, 0);
+    Class metaClass = self->isa;
+    if (class_getVersion(metaClass) > 1)
+        return [newObject init];
+    else
+        return newObject;
+}
+
+- init {
+    return self;
+}
+
+补充： NSZone是Apple用来分配和释放内存的一种方式，它不是一个对象，而是使用C结构存储了关于对象的内存管理的信息。iOS App 使用一个系统默认的NSZone来对应用的对象进行管理，会对内存做一定优化，减少内存碎片。
+
+```
