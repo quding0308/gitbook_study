@@ -95,6 +95,14 @@ void dealWithExceptionForUnknownMethod(id self, SEL _cmd) {
 }
 ```
 
+#### doesNotRecognizeSelector
+
+如果消息没有被处理，最后就会 走到 NSObject 的 doesNotRecognizeSelector
+```
+- (void)doesNotRecognizeSelector:(SEL)aSelector {
+    NSLog(@"doesNotRecognizeSelector");
+}
+```
 
 
 #### 使用案例
