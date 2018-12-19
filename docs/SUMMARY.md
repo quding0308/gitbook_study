@@ -71,7 +71,6 @@
     * [StripedMap](oc/StripedMap.md)
     * [build](oc/build.md)
     * [GCD](oc/gcd.md)
-    * [startup](oc/startup.md)
     * [objc-start](oc/objc-start.md)
     * [Swift与ObjC比较](oc/swift-oc.md)
     * [音频](oc/audio.md)
@@ -93,10 +92,11 @@
     * [富文本](ui/richtext.md)
     * [CALayer 子类](ui/calayer.md)
 
-* [App优化](optimize/index.md)
-    * [Crash优化](optimize/crash.md)
-    * [卡顿优化](optimize/kadun.md)
-    * [内存优化](optimize/memory.md)
+* [App优化](ios/optimize/index.md)
+    * [Crash优化](ios/optimize/crash.md)
+    * [卡顿优化](ios/optimize/kadun.md)
+    * [内存优化](ios/optimize/memory.md)
+    * [减小ipa包体积](ios/optimize/appsize.md)
 
 * [mvvm](mvvm/index.md)
     * [rx-mvvm](mvvm/rx-mvvm.md)
