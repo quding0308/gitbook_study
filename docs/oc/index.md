@@ -106,3 +106,21 @@ UI渲染流程，事件响应机制
 补充： NSZone是Apple用来分配和释放内存的一种方式，它不是一个对象，而是使用C结构存储了关于对象的内存管理的信息。iOS App 使用一个系统默认的NSZone来对应用的对象进行管理，会对内存做一定优化，减少内存碎片。
 
 ```
+
+### nil 输出到 字符串中为 (null)
+
+```
+NSString *str = nil;
+NSString *result = [NSString stringWithFormat:@"result:%@", str];
+
+输出：
+result:(null)
+
+////////
+其他为nil 的对象
+MyKey *str = nil;
+NSString *result = [NSString stringWithFormat:@"result:%@", str];
+
+输出：
+result:(null)
+```

@@ -1,60 +1,11 @@
 # Summary
 
+### 概述
 
-* [oc](oc/index.md)
-    * [runtime](oc/runtime/index.md)
-      * [对象模型](oc/runtime/runtime-model.md)
-      * [消息分发](oc/runtime/runtime-msg.md)
-      * [API](oc/runtime/runtime-api.md)
-    * [atomic](oc/atomic.md)
-    * [synchronized](oc/synchronized.md)
-    * [arc](oc/arc.md)
-    * [referecne count](oc/refCount.md)
-    * [weak](oc/weak.md)
-    * [autoreleasepool](oc/autoreleasepool.md)
-    * [runloop](oc/runloop.md)
-    * [AssociatedObject](oc/associatedObject.md)
-    * [copy](oc/copy.md)
-    * [block](oc/block.md)
-    * [StripedMap](oc/StripedMap.md)
-    * [build](oc/build.md)
-    * [GCD](oc/gcd.md)
-    * [startup](oc/startup.md)
-    * [objc-start](oc/objc-start.md)
-    * [Swift与ObjC比较](oc/swift-oc.md)
-    * [音频](oc/audio.md)
 
-* [Swift](swift/index.md)
-    * [where](swift/where.md)
-    * [codable])(swift/codable.md)
+### 计算机基础
 
-* [UI](ui/index.md)
-    * [显示器原理](ui/screen.md)
-    * [render](ui/render.md)
-    * [cpu渲染](ui/cpu.md)
-    * [gpu渲染](ui/gpu.md)
-    * [animation](ui/animation.md)
-    * [layout](ui/layout.md)
-    * [响应链](ui/response-chain.md)
-    * [图片解压缩](ui/image-render.md)
-    * [富文本](ui/richtext.md)
-    * [CALayer 子类](ui/calayer.md)
-
-* [mvvm](mvvm/index.md)
-    * [rx-mvvm](mvvm/rx-mvvm.md)
-    * [RxSwift](mvvm/rxswift.md)
-    * [RxCocoa](mvvm/rxcocoa.md)
-
-* [web](web/index.md)
-    * [javascript](web/js6.md)
-    * [Content Security Policy](web/csp.md)
-    * [html header](web/html-header.md)
-    * [json的使用](web/json.md)
-
-* [android](android/index.md)
-    * [activity](android/activity.md)
-
-* [other](other/index.md)
+* [网络](other/index.md)
     * [common](other/comm.md)
     * [tcp](other/tcp.md)
     * [mars](other/mars.md)
@@ -64,11 +15,7 @@
     * [https](other/https.md)
     * [正则表达式](other/rejex.md)
 
-* [App优化](optimize/index.md)
-    * [Crash优化](optimize/crash.md)
-    * [卡顿优化](optimize/kadun.md)
-    * [内存优化](optimize/memory.md)
-
+### 数据结构与算法
 * [算法](algorithm/index.md)
     * [基础](algorithm/basic/index.md)
         * [递归](algorithm/basic/recursion.md)
@@ -103,3 +50,75 @@
         * [最长公共子串](algorithm/other/lcsubstring.md)
         * [最长公共子序列](algorithm/other/lcsubsequence.md)
         * [背包问题](algorithm/other/dp-bag.md)
+
+### iOS相关
+
+* [Objective-C](oc/index.md)
+    * [runtime](oc/runtime/index.md)
+      * [对象模型](oc/runtime/runtime-model.md)
+      * [消息分发](oc/runtime/runtime-msg.md)
+      * [API](oc/runtime/runtime-api.md)
+    * [atomic](oc/atomic.md)
+    * [synchronized](oc/synchronized.md)
+    * [arc](oc/arc.md)
+    * [referecne count](oc/refCount.md)
+    * [weak](oc/weak.md)
+    * [autoreleasepool](oc/autoreleasepool.md)
+    * [runloop](oc/runloop.md)
+    * [AssociatedObject](oc/associatedObject.md)
+    * [copy](oc/copy.md)
+    * [block](oc/block.md)
+    * [StripedMap](oc/StripedMap.md)
+    * [build](oc/build.md)
+    * [GCD](oc/gcd.md)
+    * [startup](oc/startup.md)
+    * [objc-start](oc/objc-start.md)
+    * [Swift与ObjC比较](oc/swift-oc.md)
+    * [音频](oc/audio.md)
+    * [NSDictionary](oc/NSDictionary.md)
+
+* [Swift](swift/index.md)
+    * [where](swift/where.md)
+    * [codable])(swift/codable.md)
+
+* [UI渲染](ui/index.md)
+    * [显示器原理](ui/screen.md)
+    * [render](ui/render.md)
+    * [cpu渲染](ui/cpu.md)
+    * [gpu渲染](ui/gpu.md)
+    * [animation](ui/animation.md)
+    * [layout](ui/layout.md)
+    * [响应链](ui/response-chain.md)
+    * [图片解压缩](ui/image-render.md)
+    * [富文本](ui/richtext.md)
+    * [CALayer 子类](ui/calayer.md)
+
+* [App优化](optimize/index.md)
+    * [Crash优化](optimize/crash.md)
+    * [卡顿优化](optimize/kadun.md)
+    * [内存优化](optimize/memory.md)
+
+* [mvvm](mvvm/index.md)
+    * [rx-mvvm](mvvm/rx-mvvm.md)
+    * [RxSwift](mvvm/rxswift.md)
+    * [RxCocoa](mvvm/rxcocoa.md)
+  
+* [iOS运行](ios/basic/index.md)
+    * [编译](ios/basic/compile.md)
+    * [链接](ios/basic/linker.md)
+    * [App运行](ios/basic/mdstartapp.md)
+    * [签名流程](ios/basic/signature.md)
+
+* [常见bug](ios/bug/index.md)
+    <!-- * [编译](ios/basic/compile.md) -->
+
+### 其他
+
+* [web](web/index.md)
+    * [javascript](web/js6.md)
+    * [Content Security Policy](web/csp.md)
+    * [html header](web/html-header.md)
+    * [json的使用](web/json.md)
+
+* [android](android/index.md)
+    * [activity](android/activity.md)
