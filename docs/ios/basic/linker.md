@@ -1,6 +1,9 @@
 ## 链接
 
-Linker链接器 
+链接（linking) 是将 代码片段(__TEXT) 和 数据片段(__DATA) 收集并组合成一个单一文件的过程，这个文件可被加载到内存中并执行。
+
+
+Linker 链接器
 
 目标文件纯粹是字节块的集合。这些块中包含程序代码、程序数据，也包含引导Linker和Loader数据结构。
 Linker将这些字节块连接起来，确定被连接块的运行时位置，并且修改代码和数据块中的各种位置。
@@ -8,6 +11,10 @@ Linker将这些字节块连接起来，确定被连接块的运行时位置，�
 Linker有两个作用：
 1. 符号解析(symbol resolution)。符号解析的目的是 将每个符号引用 和 一个符号定义正好联系起来。
 2. 重定位(relocation)。编译器和汇编器生成从地址0开始的代码和数据节。链接器通过把每个符号定义和一个内存位置关联起来，从而成功定位这些节，然后修改所有对这些符号的引用，使得他们指向这个内存位置。
+
+### 与静态库链接
+
+
 
 Link Binary To Libraries
 
@@ -58,8 +65,6 @@ framework中资源读取问题:
 
 '' 注意:在主程序中读framework里面的资源文件也如上
 静态库，代码会编译进可执行文件中。需要生成一个对应Bundle，copy到项目中。(CocoaPods就是这样做) 
-
-参考：[http://www.qidiandasheng.com/2017/01/09/framework/#useframeworks]
 
 动态库、静态库比较：
 https://www.jianshu.com/p/743deabe15ae?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
