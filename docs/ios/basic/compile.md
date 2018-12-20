@@ -1,7 +1,5 @@
 ## 编译
 
-### 代码编译链接流程
-
 **编译**
 
 编译器会把每个 .m/.c/.mm 文件 编译成 .o 文件 (编译过程中会有 .d/.dia 中间文件生成)
@@ -119,9 +117,69 @@ Symbols 对 Section 进行了再划分。这里会描述所有的 methods、ivar
 ```
 
 
+### dsym文件
+
+程序在执行时通过地址来调用函数。dsym文件中储存了函数地址映射，函数地址可以通过dsym文件映射到具体函数位置。
+
+### 代码文件
+
+- 可执行文件
+- Object
+- 静态库文件
+- 动态库文件
+
+标识 从 Mach64 Header 中可以读出 File Type
+
+#### 可执行文件中数据
+
+一个代码二进制文件中 包含的不同区域 成为 Segment
+
+在运行时，虚拟内存会把segment映射到进程的地址空间，按需加载(mmap技术)
+
+Segment 具体分为：
+
+**__TEXT** segment
+
+包含被执行的代码，被只读和可执行的方式映射。
+
+- __cstring 可执行文件中的字符串
+- __const 不可变的常量
+- __text  包含编译后的机器码
+- __stubs 和 __stub_helper 是给动态链接器 dyld 使用，可以允许延迟链接
+
+**__DATA** segment
+
+以可读写和不可执行的方式映射（里面的数据可以被改变）
 
 
-参考：
+**__LINKEDIT**
+
+
+**__PAGEZERO**
+
+
+### Mach-O文件
+
+头部信息
+```
+struct mach_header {
+  uint32_t      magic;
+  cpu_type_t    cputype;
+  cpu_subtype_t cpusubtype;
+  uint32_t      filetype;
+  uint32_t      ncmds;
+  uint32_t      sizeofcmds;
+  uint32_t      flags;
+};
+
+作者：星光社的戴铭
+链接：https://www.jianshu.com/p/9fc7776cce9b
+來源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+```
+
+
+### 参考：
 http://blog.cnbang.net/tech/2296/
 
 http://www.cloudchou.com/android/post-992.html
