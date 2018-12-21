@@ -109,6 +109,7 @@
     * [App运行](ios/basic/mdstartapp.md)
     * [目标文件](ios/basic/objectfile.md)
     * [签名流程](ios/basic/signature.md)
+    * [LinkMap文件](ios/basic/linkmap.md)
 
 * [常见bug](ios/bug/index.md)
     <!-- * [编译](ios/basic/compile.md) -->
