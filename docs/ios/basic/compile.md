@@ -1,5 +1,13 @@
 ## 编译
 
+https://objccn.io/issue-6-2/
+
+https://objccn.io/issue-6-3/
+
+https://github.com/macmade/ClangKit
+
+https://github.com/aidansteele/osx-abi-macho-file-format-reference
+
 **编译**
 
 编译器会把每个 .m/.c/.mm 文件 编译成 .o 文件 (编译过程中会有 .d/.dia 中间文件生成)
