@@ -107,7 +107,9 @@
     * [编译](ios/basic/compile.md)
     * [链接](ios/basic/linker.md)
     * [App运行](ios/basic/mdstartapp.md)
+    * [start-runtime](ios/basic/start-runtime.md)
     * [目标文件](ios/basic/objectfile.md)
+    * [Mach-O](ios/basic/macho.md)
     * [签名流程](ios/basic/signature.md)
     * [LinkMap文件](ios/basic/linkmap.md)
 

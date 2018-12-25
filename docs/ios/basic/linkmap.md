@@ -81,4 +81,6 @@ Symbols 对 Section 进行了再划分。这里会描述所有的 methods、ivar
 https://github.com/quding0308/LinkMap
 
 其他参考：
-https://github.com/778477/iOS-LinkMapAnalyzer
+- https://github.com/778477/iOS-LinkMapAnalyzer
+- http://zwgeek.com/2018/01/08/%E5%9F%BA%E4%BA%8ELinkMap%E5%88%86%E6%9E%90iOSAPP%E5%90%84%E6%A8%A1%E5%9D%97%E4%BD%93%E7%A7%AF/
+- https://blog.cnbang.net/tech/2296/

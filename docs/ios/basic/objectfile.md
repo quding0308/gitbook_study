@@ -1,3 +1,4 @@
+
 ## 目标文件
 
 目标文件是字节块的集合
@@ -150,98 +151,6 @@ Linux 链接器解析全局符号的规则：
 
 
 
-### Mach-O文件
-
-![](./img/mach-o-1.gif)
-
-#### 头部信息 mach_header 
-
-记录一些元信息
-
-```
-struct mach_header {
-  uint32_t      magic;  
-  cpu_type_t    cputype;
-  cpu_subtype_t cpusubtype;
-  uint32_t      filetype;
-  uint32_t      ncmds;
-  uint32_t      sizeofcmds;
-  uint32_t      flags;
-};
-
-magic 表示大端还是小端
-    MH_MAGIC_64 // 64-bit big-endian magic
-    MH_CIGAM_64 // 64-bit little-endian magic
-
-cputype cpu类型
-    CPU_TYPE_I386 => :i386,
-    CPU_TYPE_X86_64 => :x86_64,
-    CPU_TYPE_ARM => :arm,
-    CPU_TYPE_ARM64 => :arm64,
-
-cpusubtype 
-    具体的CPU类型，区分不同版本的处理器
-
-filetype
-    MH_OBJECT => :object,
-    MH_EXECUTE => :execute,
-    MH_DYLIB => :dylib,
-
-ncmds
-    number of load commands
-
-sizeofcmds
-    size of load commands
-
-更多参考：https://www.rubydoc.info/github/Homebrew/ruby-macho/MachO
-
-```
-
-#### Load Command
-
-记录 如何加载每个 section 的信息
-
-
-#### Mach-O 中的 segment
-
-一个目标文件中包含不同区域，每个区域被称为 **segment**
-
-segment 具体分为：
-
-**__TEXT** 
-
-代码段。权限：只读，可执行。
-
-- .text  可执行的机器码
-- .cstring 去重后的c字符串
-- .const 初始化过的常量
-- .stubs 符号桩。本质上是一小段会直接跳入lazybinding的表对应项指针指向的地址的代码。
-- .stub_helper 辅助函数。上述提到的lazybinding的表中对应项的指针在没有找到真正的符号地址的时候，都指向这。
-
-**__DATA** 
-
-数据。权限：可读写和不可执行。
-
-- .data 初始化过的可变数据
-- .const 没有初始化过的常量
-- .bss  没有初始化过的静态变量
-- .common   没有初始化过的符号声明
-- .mod_init_func   初始化函数，在main之前调用
-- .mod_term_func   终止函数，在main返回之后调用
-- .nl_symbol_ptr	非lazy-binding的指针表，每个表项中的指针都指向一个在装载过程中，被动态链机器搜索完成的符号
-- .la_symbol_ptr	lazy-binding的指针表，每个表项中的指针一开始指向stub_helper
-
-**__LINKEDIT**
-
-包含需要被动态链接器使用的信息，包括符号表、字符串表、重定位项表等
-
-**__PAGEZERO**
-
-Catch访问NULL指针的非法操作的段
-
-
-参考：https://satanwoo.github.io/2017/06/13/Macho-1/
-https://satanwoo.github.io/2017/06/29/Macho-2/
 
 ### iOS中动态库 dylib
 
