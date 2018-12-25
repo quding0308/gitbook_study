@@ -30,6 +30,17 @@ XCode -> Project -> Build Settings -> 把Write Link Map File选项设为yes，�
 
 这里描述的是每个 Section 在可执行文件中的位置和大小。每个 Section 的 Segment 分为 __TEXT代码段 和 __DATA数据段 两种类型
 
+格式：
+```
+struct Section {
+    Address
+    Size
+    Segment
+    Section
+}
+```
+
+Demo:
 ```
 # Sections:
 # Address	Size    	Segment	Section
@@ -63,6 +74,17 @@ XCode -> Project -> Build Settings -> 把Write Link Map File选项设为yes，�
 
 Symbols 对 Section 进行了再划分。这里会描述所有的 methods、ivar和字符串等对应的地址、大小、文件编号信息。
 
+格式：
+```
+struct Symbol {
+    Address
+    Size
+    File
+    Name
+}
+```
+
+Demo：
 ```
 # Symbols:
 # Address	Size    	File  Name

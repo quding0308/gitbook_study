@@ -112,6 +112,7 @@
     * [Mach-O](ios/basic/macho.md)
     * [签名流程](ios/basic/signature.md)
     * [LinkMap文件](ios/basic/linkmap.md)
+    * [C语言](ios/basic/c.md)
 
 * [常见bug](ios/bug/index.md)
     <!-- * [编译](ios/basic/compile.md) -->
