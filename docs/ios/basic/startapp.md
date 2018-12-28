@@ -12,9 +12,6 @@ dyld 是专门用来加载动态链接库的库。dyld 从App 可执行文件的
 
 App 可执行文件 和 动态库 都是 image 文件。每一个 image 文件对应一个 ImageLoader 实例来负责加载。
 
-
-
-
 ### 动态库加载流程
 1. load dylib image 
 2. rebase image
@@ -93,3 +90,6 @@ class 加载完后，会加载 category 。把 category 中定义的方法都加
 ======= 0x400000
         0
 ```
+
+### 参考
+- https://techblog.toutiao.com/2018/05/29/untitled-24/
