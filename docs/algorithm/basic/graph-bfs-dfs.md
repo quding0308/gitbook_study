@@ -60,7 +60,7 @@ private void print(int[] prev, int s, int t) { // 递归打印 s->t 的路径
 }
 
 ```
-![](/asserts/img/ea00f376d445225a304de4531dd82723.jpg)
+![img](/asserts/img/ea00f376d445225a304de4531dd82723.jpg)
 
 ### dfs的java实现
 
@@ -95,7 +95,8 @@ private void recurDfs(int w, int t, boolean[] visited, int[] prev) {
 }
 
 ```
-![](/asserts/img/8778201ce6ff7037c0b3f26b83efba85.jpg)
+
+img](/asserts/img/8778201ce6ff7037c0b3f26b83efba85.jpg)
 
 ### Swift 版本的bfs和dfs 实现：
 

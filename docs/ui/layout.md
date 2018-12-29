@@ -63,7 +63,7 @@ setNeedsUpdateConstraints makes sure a future call to updateConstraintsIfNeeded 
 
 类似于 layoutIfNeeded 的的逻辑，system 会立即调用 updateConstraints
 
-![图片](https://i.stack.imgur.com/i9YuN.png)
+![img](https://i.stack.imgur.com/i9YuN.png)
 
 
 

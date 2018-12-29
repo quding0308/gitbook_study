@@ -24,7 +24,7 @@ BOOL can2 = [self canResignFirstResponder];
 BOOL isFirstResponder = [self isFirstResponder];
 ```
 
-![](https://docs-assets.developer.apple.com/published/7c21d852b9/f17df5bc-d80b-4e17-81cf-4277b1e0f6e4.png)
+![](/asserts/img/f17df5bc-d80b-4e17-81cf-4277b1e0f6e4.png)
 
 当App接收到event，UIKit会自动 把event传递给合适的responder。如上图，点击输入框后首先会传递给UITextField，如果不响应 会继续传递给super view，直到找到相应的responder，最后到AppDelegate。
 
