@@ -3,8 +3,8 @@
 
 cd ../gitbook_study
 
-cp docs/asserts/img/favicon.ico _book/github/images/favicon.ico
-
+cp ./docs/asserts/img/favicon.ico ./_book/gitbook/images/favicon.ico
+cp ./docs/asserts/img/apple-touch-icon-precomposed-152.png ./_book/gitbook/images/apple-touch-icon-precomposed-152.png
 
 git add .
 git commit -m '1'
