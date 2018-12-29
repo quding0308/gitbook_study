@@ -15,7 +15,7 @@
 - model数据更新时如何通知到view
 - 具体的业务逻辑，应该写在哪里
 
-![](https://raw.githubusercontent.com/quding0308/RxLogin-MVVM-Example/master/docs/15318830258947.jpg)
+![img](/asserts/img/15318830258947.jpg)
 
 #### VC作用
 ##### 1.初始化view，viewModel

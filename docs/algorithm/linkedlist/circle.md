@@ -83,7 +83,6 @@
 
 [参考](https://blog.csdn.net/sinat_35261315/article/details/79205157)
 
-![图片](http://pc5ouzvhg.bkt.clouddn.com/WechatIMG187.jpeg)
 
 #### 求环的长度 
 

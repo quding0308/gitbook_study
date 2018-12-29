@@ -10,7 +10,7 @@ Retina 显示屏 就是普通的液晶屏。
 
 显示器显示原理：
 
-![](http://pc5ouzvhg.bkt.clouddn.com/158CBCE1-05EE-4687-A658-F16AF76B5CC9.jpg)
+![img](http://pc5ouzvhg.bkt.clouddn.com/158CBCE1-05EE-4687-A658-F16AF76B5CC9.jpg)
 
 CRT的电子枪按照上面的方式，上到下一行行扫描，扫描完成后显示器就呈现一帧画面，随后电子枪回到初始位置继续下一次扫描。
 

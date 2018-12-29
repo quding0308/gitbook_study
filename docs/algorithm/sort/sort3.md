@@ -2,7 +2,7 @@
 
 Quick Sort
 
-![img](https://static001.geekbang.org/resource/image/66/dc/6643bc3cef766f5b3e4526c332c60adc.jpg)
+![img](/asserts/img/6643bc3cef766f5b3e4526c332c60adc.jpg)
 
 
 ``` java

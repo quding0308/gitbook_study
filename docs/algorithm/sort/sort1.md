@@ -1,7 +1,7 @@
 
 ### 比较
 
-![图片](http://pc5ouzvhg.bkt.clouddn.com/348604caaf0a1b1d7fee0512822f0e50.jpg)
+![img](/asserts/img/sotr1.png)
 
 从代码实现上来看，冒泡排序的数据交换要比插入排序的数据移动要复杂，冒泡排序需要 3 个赋值操作，而插入排序只需要 1 个。
 
