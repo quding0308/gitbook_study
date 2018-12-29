@@ -1,11 +1,6 @@
 {
     "root": "./docs",
-    "plugins" : [ "code", "favicon", "expandable-chapters" ],
-    "pluginsConfig": {
-        "favicon":{
-            "shortcut": "/asserts/img/favicon.ico"
-        }
-    },
+    "plugins" : [ "code", "expandable-chapters" ],
     "theme-default": {
         "showLevel": true
     },
