@@ -93,3 +93,6 @@ class 加载完后，会加载 category 。把 category 中定义的方法都加
 
 ### 参考
 - https://techblog.toutiao.com/2018/05/29/untitled-24/
+- http://yulingtianxia.com/blog/2016/10/30/Optimizing-App-Startup-Time/
+- http://blog.sunnyxx.com/2014/08/30/objc-pre-main/
+- 

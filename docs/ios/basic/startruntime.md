@@ -1,7 +1,8 @@
 ### runtime 启动
 
 调用时机：
-![](../../img/runtime-start1.png)
+
+![img](/asserts/img/runtime-start1.png)
 
 ```
 void _objc_init(void)

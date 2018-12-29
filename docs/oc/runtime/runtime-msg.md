@@ -111,4 +111,4 @@ void dealWithExceptionForUnknownMethod(id self, SEL _cmd) {
 
 ### 参考
 
-![](https://raw.githubusercontent.com/quding0308/gitbook_study/master/assets/images/runtime-message-forward.jpg)
+![img](/asserts/img/runtime-message-forward.jpg)

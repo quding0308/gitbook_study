@@ -3,7 +3,7 @@
     "plugins" : [ "code", "favicon", "expandable-chapters" ],
     "pluginsConfig": {
         "favicon":{
-            "shortcut": "assets/images/favicon.ico"
+            "shortcut": "/asserts/img/favicon.ico"
         }
     },
     "theme-default": {

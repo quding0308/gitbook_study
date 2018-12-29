@@ -12,6 +12,7 @@
 - mainRunLoop 与 其他RunLoop的区别？有哪些特权？
 - 具体如何运转？
 
+![img](/asserts/img/runloop.png)
 
 ### Runloop 简介
 所谓 Runloop 就是 苹果设计的一种 **在当前线程，持续调度各种任务** 的运行机制。

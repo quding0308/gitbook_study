@@ -1,6 +1,6 @@
 ## Mach-O文件
 
-![](./img/mach-o-1.gif)
+![img](/asserts/img/mach-o-1.gif)
 
 ### 头部信息 mach_header 
 

@@ -3,7 +3,7 @@
 * 目录
 {:toc}
 
-![](../img/1.png)
+![img](/asserts/img/1.png)
 
 ### mars
 

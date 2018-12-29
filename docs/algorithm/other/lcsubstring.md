@@ -16,7 +16,8 @@
 #### 1.建二维数组
 使用一个二维数组存储子问题的结果方便复用，f[i][j]存储X[i]和Y[j]之前的最长公共子串长度。
 
-![img1](https://raw.githubusercontent.com/quding0308/gitbook_study/master/assets/images/lcsubsubstring1.png)
+![img](/asserts/img/lcsubsubstring1.png)
+
 
 #### 2.计算规则：
 
