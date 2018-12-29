@@ -37,7 +37,7 @@
 - 基于数组，获取两个点的关系很高效
 - 浪费空间
 
-![](https://static001.geekbang.org/resource/image/62/d2/625e7493b5470e774b5aa91fb4fdb9d2.jpg)
+![](/asserts/img/625e7493b5470e774b5aa91fb4fdb9d2.jpg)
 
 #### 领接表存储
 
@@ -49,6 +49,6 @@
 - 存储节省空间
 - 计算时耗费时间(例如获取两个点的关系)
 
-![](https://static001.geekbang.org/resource/image/03/94/039bc254b97bd11670cdc4bf2a8e1394.jpg)
+![](/asserts/img/03/94/039bc254b97bd11670cdc4bf2a8e1394.jpg)
 
 优化：存储顶点时，可以把链表替换成平很二叉树、跳表、红黑书，提升查找速度
