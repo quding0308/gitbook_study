@@ -5,6 +5,13 @@
 
 ### 计算机基础
 
+
+* [计算机系统](computer/index.md)
+    * [CPU](computer/cpu.md)
+    * [汇编语言](computer/assembly_language.md)
+    * 
+    * 
+
 * [网络](other/index.md)
     * [common](other/comm.md)
     * [tcp](other/tcp.md)
