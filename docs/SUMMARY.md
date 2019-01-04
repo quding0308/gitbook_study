@@ -96,11 +96,11 @@
       * [NSDictionary](oc/keyword/NSDictionary.md)
 
 * [Swift](swift/index.md)
+    * [Closure](swift/closure.md)
+    * [Property](swift/property.md)
+    * [泛型](swift/generic.md)
     * [where](swift/where.md)
     * [codable](swift/codable.md)
-    * [闭包](swift/closure.md)
-    * [泛型](swift/generic.md)
-    * [Property](swift/property.md)
 
 * [iOS系统](ios/basic/index.md)
     * [编译](ios/basic/compile.md)
