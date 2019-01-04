@@ -162,7 +162,6 @@ class Person: Animal {
         didSet {
             print("didSet age")
         }
-        
     }
     
     // override Computed Property
