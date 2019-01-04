@@ -9,8 +9,6 @@
 * [计算机系统](computer/index.md)
     * [CPU](computer/cpu.md)
     * [汇编语言](computer/assembly_language.md)
-    * 
-    * 
 
 * [网络](other/index.md)
     * [common](other/comm.md)
@@ -99,8 +97,10 @@
 
 * [Swift](swift/index.md)
     * [where](swift/where.md)
-    * [codable])(swift/codable.md)
-    * [闭包和函数](swift/closurefunction.md)
+    * [codable](swift/codable.md)
+    * [闭包](swift/closure.md)
+    * [泛型](swift/generic.md)
+    * [Property](swift/property.md)
 
 * [iOS系统](ios/basic/index.md)
     * [编译](ios/basic/compile.md)
