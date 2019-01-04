@@ -4,7 +4,7 @@
 
 1. Stored Property 可以为 var 或 let ，会存储 value 作为对象的一部分
 2. Stored Property 可以设置默认值
-3. 可以在 init 方法中修改 Stored Property 的值(let 也可以修改)
+3. 可以在 init 方法中修改 Stored Property 的值(let 如果未初始化，则可以在init中赋值)
 
 ``` Swift
 var firstName: String = ""
