@@ -9,6 +9,7 @@
 * [计算机系统](computer/index.md)
     * [CPU](computer/cpu.md)
     * [汇编语言](computer/assembly_language.md)
+    * [POSIX](computer/posix.md)
 
 * [网络](other/index.md)
     * [common](other/comm.md)
