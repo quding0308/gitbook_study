@@ -65,4 +65,23 @@ int connect(int, const struct sockaddr *, socklen_t)
 
 socket 编程
 
+### dirent.h
 
+``` c 
+#include <dirent.h>
+
+DIR *opendir(const char *)
+
+```
+
+对目录的操作
+
+
+
+### string.h
+
+``` c
+#include <string.h>
+```
+
+对字符串操作

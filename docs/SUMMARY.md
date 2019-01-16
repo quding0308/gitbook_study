@@ -150,3 +150,7 @@
 
 * [android](android/index.md)
     * [activity](android/activity.md)
+
+
+* [其他](other/index.md)
+    * [长连方案](other/longconnection.md)
