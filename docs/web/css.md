@@ -304,6 +304,8 @@ flex-flow: column wrap-reverse;
 ### align-items (container属性，对子元素生效)
 ``` css
 设置块中的对齐方式。
+用于设置让每一单行的容器剧中，而不是整个容器。
+
 对所有直接子节点的 align-self 统一设置。
 
 设置 Flex 在另一个方向的对齐方式。
@@ -315,7 +317,27 @@ align-items: center; // 元素在侧轴居中
 align-items: flex-start;    // 元素向侧轴起点对齐
 align-items: flex-end;  // 元素向侧轴终点对齐
 align-items: baseline;
+```
 
+### justify-content (container属性，对子元素生效)
+
+``` css 
+定义了在主轴方向，如何分配元素直接的空间。
+只适用于 多行 flex容器。
+
+使用前提：所有弹性元素的 flex-glow 等于0，才生效。（如果存在至少一个弹性元素，则会自动占满空间）
+
+注意：如果没有主动设置 flex，此时 flex 默认为：flex: inherit inherit auto，则 justify-content 生效
+
+```
+
+align-content 与 align-items 的区别：
+https://blog.csdn.net/sinat_27088253/article/details/51532992
+
+### align-content (container属性，对子元素生效)
+
+``` css
+定义了侧轴方向，如何分配控件
 ```
 
 ### flex、flex-grow、flex-shrink、flex-basis
@@ -353,8 +375,15 @@ flex: 2 2 等价于 flex: 2 2 auto
 
 align-self 设置当前flex 元素的对齐方式，会覆盖 container 设置的 align-items 的值
 
+```
+
+### order 
+规定了 弹性容器中的可伸缩项目在布局时的顺序。具有相同order的元素按代码顺序布局
 
 ```
+default value 0
+```
+
 
 
 ### 参考
