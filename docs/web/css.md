@@ -281,7 +281,7 @@ flex-direction: column;
 flex-direction: column-reverse;
 ```
 
-flex-wrap
+### flex-wrap
 ``` css
 指定了内部元素单行显示还是多行显示，是否允许换行
 
@@ -291,7 +291,7 @@ flex-wrap: wrap
 flex-wrap: wrap-reverse
 ```
 
-flex-flow 
+### flex-flow 
 ``` css
 flex-flow 是 flex-direction 和 flex-wrap 的简写。
 
