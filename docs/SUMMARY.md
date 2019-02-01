@@ -2,9 +2,7 @@
 
 ### 概述
 
-
 ### 计算机基础
-
 
 * [计算机系统](computer/index.md)
     * [CPU](computer/cpu.md)
@@ -148,7 +146,8 @@
     * [CSS](web/css.md)
     * [javascript](web/js6.md)
     * [Content Security Policy](web/csp.md)
-    * [render](web/render.md)
+    * [页面渲染](web/render.md)
+    * [页面加载优化](web/web_optimize.md)
     * [json的使用](web/json.md)
 
 * [android](android/index.md)
