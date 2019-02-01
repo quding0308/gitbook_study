@@ -10,6 +10,7 @@
     * [CPU](computer/cpu.md)
     * [汇编语言](computer/assembly_language.md)
     * [POSIX](computer/posix.md)
+    * [编程范式](computer/programing_paradigm.md)
 
 * [网络](other/index.md)
     * [common](other/comm.md)

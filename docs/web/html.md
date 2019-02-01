@@ -1,4 +1,14 @@
-### html header 设置
+
+HyperText Markup Language
+
+标记语言 描述内容的含义和结构
+CSS 网页的展示
+JavaScript 功能与行为
+
+使用 “元素” 来定义文档结构。
+
+
+## HTML Header
 
 ``` html
 <head>
@@ -35,3 +45,41 @@
 
 </head>
 ```
+
+## HTML TAG
+
+``` html
+<html>
+<head>  // 文档的元数据
+<body>
+
+<h1>
+<title>
+<header>
+<footer>
+<nav>   // 导航栏（含有多个链接，可跳转到其他页面）
+<details>
+<datalist>
+<article>
+<section>
+<p>
+<div>
+<span>  // 内联tag，没有特殊含义
+<img>
+<audio>
+<video>
+<canvas>
+<aside> // 表示一个和其余页面内容不相关的部分
+<embed> // 外部内容嵌入到文档中
+
+tag参考：
+https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element
+```
+
+
+
+#### JS操作 dom 与 CSS
+
+
+Ajax 
+Asynchronous JavaScript + XML（异步JavaScript和XML）
