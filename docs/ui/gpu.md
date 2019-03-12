@@ -35,7 +35,7 @@ dispatch_async(backgroundQueue, ^{
 - shadows 阴影
 - edge antialiasing 抗锯齿
 - group opacity 半透明
-- 设置圆角
+- cornerRadius 圆角
 - 渐变
 
 ```
@@ -44,6 +44,9 @@ shouldRasterize（光栅化）
 When the value of this property is true, the layer is rendered as a bitmap in its local coordinate space and then composited to the destination with any other content. Shadow effects and any filters in the filters property are rasterized and included in the bitmap. 
 ```
 
+#### 为什么会有离屏渲染
+
+含有透明度的视图，在显示前需要进行图层的合成，即对重叠视图的每个像素的 R，G，B，A 值进行重计算，最终显示组合的效果。
 
 #### Instruments监测离屏渲染
 
@@ -57,4 +60,5 @@ Instruments的Core Animation工具中有几个和离屏渲染相关的检查选�
 
 
 
-
+### 参考
+- http://www.10tiao.com/html/585/201803/2654061295/1.html
