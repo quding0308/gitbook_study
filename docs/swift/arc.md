@@ -4,7 +4,7 @@
 
 #### 1.两个类中的 property 都可能为 nil
 
-```
+``` Swift
 class Person {
     let name: String
     init(name: String) { self.name = name }
@@ -22,7 +22,7 @@ class Apartment {
 
 #### 2.两个类中的 property ，一个可能为 nil，另一个不可能为 nil
 
-```
+``` Swift
 class Customer {
     let name: String
     var card: CreditCard?
@@ -45,7 +45,7 @@ class CreditCard {
 
 #### 3.两个类中的 property 都不可能为 nil
 
-```
+``` Swift
 class Country {
     let name: String
     var capitalCity: City!
@@ -75,7 +75,7 @@ class City {
 
 使用 [weak self]
 
-```
+``` Swift
 lazy var asHTML: () -> String = { [weak self] in
     if let text = self?.text {
         return "<\(self?.name)>\(text)</\(self?.name)>"
@@ -89,7 +89,7 @@ lazy var asHTML: () -> String = { [weak self] in
 
 使用 [unowned self]
 
-```
+``` Swift
 lazy var asHTML: () -> String = { [unowned self] in
     if let text = self.text {
         return "<\(self.name)>\(text)</\(self.name)>"
