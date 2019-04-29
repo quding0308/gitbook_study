@@ -113,6 +113,8 @@ layer.shadows
 - 尽量减少主线程中的工作，放到子线程执行
 - 多使用缓存，减少计算
 - 更新时，只更新有变化的内容 (RXDataSource的思路)
+
+
   
 ### 参考：
 - Autolayout 渲染优化：https://juejin.im/post/5bd5a546f265da0af033cee6

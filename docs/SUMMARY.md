@@ -101,6 +101,7 @@
     * [泛型](swift/generic.md)
     * [where](swift/where.md)
     * [codable](swift/codable.md)
+    * [ARC中的循环引用](swift/arc.md)
 
 * [iOS系统](ios/basic/index.md)
     * [编译](ios/basic/compile.md)
@@ -118,12 +119,13 @@
     * [render](ui/render.md)
     * [cpu渲染](ui/cpu.md)
     * [gpu渲染](ui/gpu.md)
-    * [animation](ui/animation.md)
     * [layout](ui/layout.md)
     * [响应链](ui/response-chain.md)
     * [图片解压缩](ui/image-render.md)
     * [富文本](ui/richtext.md)
-    * [CALayer 子类](ui/calayer.md)
+    * [CALayer子类](ui/CALayer.md)
+    * [CoreAnimation](ui/CoreAnimation.md)
+    * [CoreGraphics](ui/CoreGraphics.md)
 
 * [App优化](ios/optimize/index.md)
     * [Crash优化](ios/optimize/crash.md)
