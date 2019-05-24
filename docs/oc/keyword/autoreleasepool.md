@@ -406,6 +406,24 @@ App中的所有自动释放池都存储在同一个双向链表中，一个自�
 BREAKPOINT_FUNCTION(void objc_autoreleaseNoPool(id obj));
 ```
 
+#### TLS-线程局部存储
+
+在 hotPage() 和 setHotPage() 的实现中有两个底层的函数：
+
+```
+static pthread_key_t const key = AUTORELEASE_POOL_KEY;  // 唯一标识
+tls_set_direct(key, (void *)page);
+
+AutoreleasePoolPage *result = (AutoreleasePoolPage *)tls_get_direct(key);
+```
+
+tls (Thread Local Storage) 线程局部存储，用来将数据与一个正在运行的线程关联起来。
+
+进程中的 全局变量 和 函数内定义的 静态变量(static) 是各线程都可以访问的共享变量。在一个线程内修改，对所有线程生效。
+
+TLS技术的作用：为了避免多个线程同时访存同一全局变量或者静态变量时所导致的冲突，尤其是多个线程同时需要修改这一变量时。为了解决这个问题，可以通过TLS机制，为每一个使用该全局变量的线程都提供一个变量值的副本，每一个线程均可以独立地改变自己的副本，而不会和其它线程的副本冲突。从线程的角度看，就好像每一个线程都完全拥有该变量。而从全局变量的角度上来看，就好像一个全局变量被克隆成了多份副本，而每一份副本都可以被一个线程独立地改变。
+
+
 
 ### 参考
 
