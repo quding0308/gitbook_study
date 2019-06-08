@@ -4,6 +4,15 @@
 
 ![img](/asserts/img/runtime-start1.png)
 
+参考：https://bestswifter.com/runtime-category/
+
+```
+void _objc_init(void)  
+└──const char *map_2_images(...)
+    └──const char *map_images_nolock(...)
+        └──void _read_images(header_info **hList, uint32_t hCount)
+```
+
 ```
 void _objc_init(void)
 {

@@ -10,28 +10,7 @@ runtime是OC底层的一套c语言API。编译器会把oc代码编译成运行�
 ```
 
 ### 涉及的概念
-
-Class
-
 ```
-typedef struct objc_class *Class;   // Class是一个指向objc_class结构体的指针
-
-struct objc_class {
-    Class isa;  // meta class
-    Class super_class; // 父类 或 NULL
-
-    const char *name; // 类名
-    long version; //类的版本
-    long info;  // 类的信息
-    long instance_size; // 对象实例大小  
-
-    struct objc_ivar_list *ivars;// 变量
-    struct objc_method_list **methodLists; // 方法
-    struct objc_protocol_list *protocols; // 协议
-
-    struct objc_cache *cache;   方法缓存
-}
-
 struct objc_ivar_list {
     int ivar_count；                         
     struct objc_ivar ivar_list[1];  // 数组
@@ -48,10 +27,11 @@ struct objc_protocol_list {
     Protocol *list[1];
 };
 
+// 更多参考 objc_cache 的文章 
 struct objc_cache {
-    unsigned int mask; //指定分配缓存bucket的总数。total = mask + 1 runtime使用这个字段确定线性查找数组的索引位置
-    unsigned int occupied; //实际占用缓存bucket总数
-    Method buckets[1]; //指向Method数据结构指针的数组，这个数组的总数不能超过mask+1，但是指针是可能为空的，这就表示缓存bucket没有被占用，数组会随着时间增长。
+    unsigned int mask; 
+    unsigned int occupied; 
+    Method buckets[1]; 
 };
 
 ```
@@ -216,7 +196,6 @@ BOOL class_conformsToProtocol ( Class cls, Protocol *protocol );
 // 返回类实现的协议列表
 Protocol * class_copyProtocolList ( Class cls, unsigned int *outCount );
 ```
-
 
 ### 参考
 
