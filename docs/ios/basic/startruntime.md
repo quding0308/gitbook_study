@@ -195,7 +195,6 @@ for (i = 0; i < count; i++) {
 
 从 __objc_classrefs 读取 class
 ```
-
 Class *classrefs = _getObjc2ClassRefs(hi, &count);
 for (i = 0; i < count; i++) {
     remapClassRef(&classrefs[i]);
