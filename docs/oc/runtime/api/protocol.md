@@ -1,4 +1,18 @@
-## protocol
+## 概述
+
+```
+
+
+typedef uintptr_t protocol_ref_t;  // protocol_t *, but unremapped
+
+// 存放的是 protocol_ref_t
+struct protocol_list_t 
+
+class protocol_array_t : public list_array_tt<protocol_ref_t, protocol_list_t> {
+
+}
+
+```
 
 ```
 objc_getProtocol

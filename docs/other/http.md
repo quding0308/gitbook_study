@@ -1,20 +1,18 @@
 ## http
 
 ### Request
-
+格式
 ```
 <method> <request-URL> <version>
 <headers>
 
 <entity-body>
+```
 
-
-Content-Type: application/x-www-form-urlencoded
-Content-Type: application/json
-
-
+```
 POST http://www.example.com HTTP/1.1
 Content-Type: application/x-www-form-urlencoded;charset=utf-8
+accept-language: zh-CN
 
 title=test&sub%5B%5D=1&sub%5B%5D=2&sub%5B%5D=3
 ```
@@ -48,36 +46,50 @@ Connection: keep-alive
 5xx服务器错误——服务器在处理某个正确请求时发生错误
 
 100 Continue
-
 101 Switching Protocols
-
 服务器已经理解了客户端的请求，并将通过Upgrade消息头通知客户端采用不同的协议来完成这个请求。在发送完这个响应最后的空行后，服务器将会切换到在Upgrade消息头中定义的那些协议。WebSocket 使用
 
 200 OK
-
 201 Created
-
 202 Accepted
 
 301 Moved Permanently **重定向**资源被永久移动到了新位置
-
 304 Not Modified
 
 400 Bad Request
-
 401 
-
 403 Forbidden 服务器已接收到请求，但拒绝执行
-
 404 Not found
 
 500 Internal Server Error
-
 501 Not Implemented
-
 502 Bad Gateway
+```
+
+### header
+
+#### Content-Type
+```
+Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
+```
+
+#### HSTS
+```
+Strict-Transport-Security: max-age=0
+
+HTTP Strict Transport Security（通常简称为HSTS）是一个安全功能，它告诉浏览器只能通过HTTPS访问当前资源，而不是HTTP。
+
+max-age=<expire-time>
+设置在浏览器收到这个请求后的<expire-time>秒的时间内凡是访问这个域名下的请求都使用HTTPS请求。
+```
+
+#### Cache-Control
 
 ```
+Cache-Control: public, max-age=0
+```
+
 
 ### HTTP2.0和HTTP1.X相比的新特性
 
