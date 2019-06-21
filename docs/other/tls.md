@@ -1,64 +1,32 @@
 
+## Record Protocol
+
+```
+The TLS Record Protocol is a layered protocol.  At each layer,
+messages may include fields for length, description, and content.
+The Record Protocol takes messages to be transmitted, fragments the
+data into manageable blocks, optionally compresses the data, applies
+a MAC, encrypts, and transmits the result.  Received data is
+decrypted, verified, decompressed, reassembled, and then delivered to
+higher-level clients.
+```
+
+TLS Connection 传递数据，需要以下参数：
+
+- connectinon end。是 client 或 server
+- RF algorithm。用于计算 master_key
+- bulk encryption algorithm。用于加密数据
+- MAC algorithm。用于计算 message 的 MAC 值。
+- compression algorithm。 压缩算法
+- master secret。48 bytes secret
+- client random。32 bytes 
+- server random。3 random
 
 ## Handsahke Protocol
 
+![img](/asserts/img/tls1.png)
 
-
-
-@startuml
-
-participant c as "禅道"
-participant jm as "jenkins master"
-participant js as "jenkins slave"
-participant ftp as "ftp 服务器"
-
-c -> jm: 点击：构建 
-activate jm
-
-jm -> js: 选择 salve ，执行脚本
-deactivate jm
-activate js
-
-js -> c: 开始构建
-
-js --> js: 从禅道下载资源、证书
-
-js --> js: 替换图片资源，替换 KDMixedCloudConfig 文件
-
-js --> js: 读取 ios.property , 替换参数，保存到 integration.plist 中
-
-js --> js: 导入证书，检测 group 是否一致
-
-js --> js: 替换 info.plist 中的参数
-
-js --> js: 多语言处理，更新 InfoPlist.strings
-
-js --> js: 更新 entitlements ，修改 group
-
-js --> js: 更新 project.pbxproj ，修改 bundle id，provisioning file name
-
-js --> js: 修改 Podfile ，执行 sh pod_install 
-
-js --> js: xcode-select -switch 命令
-
-js --> js: xcodebuild 构建
-
-js --> js: 修改 enterprise.plist ，准备 archive
-
-js --> js: xcodebuild -exportArchive 打包
-
-deactivate js
-
-js --> jm: 把 ipa 和 plist scp 到 master
-
-js --> ftp: ipa、plist、dsym 上传到 ftp 服务器
-
-js -> c: 构建完成
-
-@enduml
-
-
-#### ClientHello
+#### 1ClientHello
 
 ClientHello 发送的数据包括：
 
@@ -71,11 +39,11 @@ ClientHello 发送的数据包括：
 ```
 struct {
     uint32 gmt_unix_time;   // current time
-    opaque random_bytes[28];    // 随机产生的 28 bytes
-} Random;
+    opaque random_bytes[28];    
+} Random;  32 bytes
 ```
 
-#### 1ServerHello
+#### 2ServerHello
 
 Server 当收到了 ClientHello 后，向 client 发送 ServerHello
 
@@ -87,15 +55,15 @@ ServerHello 包含数据：
 - cipher_suite (由 server 选中的加密算法)
 - compression_method (由 server 选中的压缩算法)
 
-#### 2Server Certificate
+#### 3Server Certificate
 
 向 client 发送证书和公钥
 
-#### 3Server Key Exchange Message
+此处发送的是从权威机构申请的CA证书。
 
-The ServerKeyExchange message is sent by the server only when the
-      server Certificate message (if sent) does not contain enough data
-      to allow the client to exchange a premaster secret.
+证书中包含服务器公钥、服务器域名，然后证书通过CA私钥签名。
+
+client 在收到证书后，会使用CA的公钥验证签名，以此来验证 服务器的身份、公钥和域名是否真实。
 
 #### 4Certificate Request
 
@@ -114,16 +82,47 @@ The ServerKeyExchange message is sent by the server only when the
 
 由 client 发送。 
 
-client 生成一个随机数 pre_master_key，然后通过 server-rsa-public-key 加密，发送给 server。
+client 随机生成一个48字节的 pre_master_key，然后通过 server-rsa-public-key 加密，发送给 server。
 
+#### 8Finished
 
+此时双方可以根据同样的算法计算出 master_key 。master_key 为固定长度 48 bytes
 
-#### 8Certificate Verify
+```
+master_secret = PRF(pre_master_secret, "master secret",
+                          ClientHello.random + ServerHello.random)
+                          [0..47];
+```
 
+相互发送 Finished message。
 
-#### 9Finished
+Finished message 是第一个使用协商好的 algorithms, master key 来加密的消息。
 
+如果一方已经发送了 Finished，并且接收、验证了对方的 Finished message，则就可以发送 Application Data 了
 
-参考：
+```
+ Application data messages are carried by the record layer and are
+   fragmented, compressed, and encrypted based on the current connection
+   state.  The messages are treated as transparent data to the record
+   layer.
+```
 
-- https://www.ietf.org/rfc/rfc5246.txt
+### 其他
+
+#### CA认证
+
+CA Certificate Authority，负责发放和管理数字证书的权威机构。
+
+CA发放的数字证书，证明证书中列出的用户机构合法拥有证书中列出的公钥。
+
+#### MAC
+
+Message Authentication Code 消息识别码
+
+通过 MAC algorithm 计算 message 生成 MAC，使用 MAC 来校验消息的完整性。
+
+### 参考：
+
+- tls:https://www.ietf.org/rfc/rfc5246.txt
+- 
+- https://juejin.im/entry/5a644a61f265da3e4c07e334
