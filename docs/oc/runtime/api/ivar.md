@@ -18,6 +18,109 @@ struct class_ro_t {
 
 ```
 
+### offset 
+
+指当前 ivar 的内存起始地址
+
+对齐规则：
+- 起始地址是长度的整数倍
+- 64位，struct 长度是8的倍数。32位，struct 长度是4的倍数
+
+```
+@interface RuntimeTest3 () {
+    int8_t age1;
+    NSString *firstName;
+    int32_t age;
+    NSString *lastName;
+}
+
+/*
+ NSString *firstName;
+ NSString *lastName;
+ int32_t age;
+ int8_t age1;
+ 
+ 对齐策略为：
+ 0--------
+ isa
+ 8--------
+ firstName
+ 16--------
+ lastName
+ 24--------
+ age
+ 28--------
+ age1
+ 
+ 实例大小为 32 bytes
+ */
+
+/*
+ int8_t age1;
+ NSString *firstName;
+ NSString *lastName;
+ int32_t age;
+ 
+ 对齐策略为：
+ 0--------
+ isa
+ 8--------
+ age1      (这里要对齐 btyes)
+ 16--------
+ firstName
+ 24--------
+ lastName
+ 32--------
+ age
+ 
+ 实例大小为 40 bytes
+ */
+
+/*
+ int8_t age1;
+ NSString *firstName;
+ int32_t age;
+ NSString *lastName;
+
+ 对齐策略为：
+ 0--------
+ isa
+ 8--------
+ age1      (这里要对齐 btyes)
+ 16--------
+ firstName
+ 24--------
+ age
+ 32--------
+ lastName
+ 
+ 实例大小为 40 bytes
+ */
+
+/*
+ int8_t age1;
+ int32_t age;
+ NSString *firstName;
+ NSString *lastName;
+ 
+ 对齐策略为：
+ 0--------
+ isa
+ 8--------
+ age1
+ 12--------
+ age
+ 16--------
+ firstName
+ 24--------
+ lastName
+ 
+ 实例大小为 32 bytes
+ */
+```
+
+### 存储
+
 objc_class->data() 会返回 class_rw_t。 class_rw_t->ro 持有 class_ro_t。class_ro_t 中持有 ivars 用于保存 class 的 Ivar。
 
 ```
@@ -40,10 +143,6 @@ struct entsize_list_tt {
     Element first;
 };
 ```
-
-class_addIvar 只能在 objc_allocateClassPair 和 objc_registerClassPair 之间调用。
-
-已经存在的类不支持添加 ivar。
 
 ## runtime api
 
@@ -80,20 +179,21 @@ const char* ivar_getTypeEncoding(Ivar ivar)
     if (!ivar) return nil;
     return ivar->type;
 }
-
-
 ```
 
 ### class api
 
 ```
+// 首先会遍历自己，然后查找父类 直到找到
 Ivar class_getClassVariable(Class cls, const char *name);
 Ivar class_getInstanceVariable(Class cls, const char *name);
 
-// his function may only be called after objc_allocateClassPair and before objc_registerClassPair. 
- *       Adding an instance variable to an existing class is not supported.
+
+// class_addIvar 只能在 objc_allocateClassPair 和 objc_registerClassPair 之间调用。
+// 已经存在的类不支持添加 ivar。
 BOOL class_addIvar(Class cls, const char *name, size_t size, uint8_t alignment, const char *types);
 
+// 只会遍历当前类的 var ，不会去父类查找
 Ivar  _Nonnull * class_copyIvarList(Class cls, unsigned int *outCount);
 
 const uint8_t * class_getIvarLayout(Class cls);

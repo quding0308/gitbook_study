@@ -121,6 +121,20 @@ Message Authentication Code 消息识别码
 
 通过 MAC algorithm 计算 message 生成 MAC，使用 MAC 来校验消息的完整性。
 
+#### HMAC
+
+Hash-based Message Authentication Code  哈希消息认证码
+
+HMAC运算利用哈希算法，以一个密钥和一个消息为输入，生成一个消息摘要作为输出。
+
+```
+HMAC（K，M）
+
+
+```
+
+
+
 ### 参考：
 
 - tls:https://www.ietf.org/rfc/rfc5246.txt

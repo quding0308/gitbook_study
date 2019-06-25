@@ -34,8 +34,6 @@ struct class_ro_t {
 };
 ```
 
-
-
 ## runtime api
 
 ### Method
@@ -57,15 +55,16 @@ void method_getReturnType(Method m, char *dst, size_t dst_len);
 void method_getArgumentType(Method m, unsigned int index, char *dst, size_t dst_len);
 
 struct objc_method_description * method_getDescription(Method m);
-
 ```
 
 ### class
 
 ```
+// 遍历查找父类 method
 Method class_getInstanceMethod(Class cls, SEL name);
 Method class_getClassMethod(Class cls, SEL name);
 
+// 返回当前 class 内存储的 methods  (cls->data()->methods)
 Method  _Nonnull * class_copyMethodList(Class cls, unsigned int *outCount);
 
 BOOL class_addMethod(Class cls, SEL name, IMP imp, const char *types);
@@ -73,7 +72,6 @@ IMP class_replaceMethod(Class cls, SEL name, IMP imp, const char *types);
 
 IMP class_getMethodImplementation(Class cls, SEL name);
 IMP class_getMethodImplementation_stret(Class cls, SEL name);
-
 ```
 
 ### 源码实现
@@ -158,5 +156,4 @@ static IMP addMethod(Class cls, SEL name, IMP imp, const char *types, bool repla
 
     return result;
 }
-
 ```

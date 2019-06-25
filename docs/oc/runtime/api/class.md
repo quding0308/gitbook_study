@@ -26,22 +26,18 @@ objc_destructInstance
 ### 源码
 
 ```
-// Class是一个指向objc_class结构体的指针
 typedef struct objc_class* Class;   
 
-// id 是指向 objc_object 结构体的指针
 typedef struct objc_object* id; 
 
-// 一个 class 的 实例
 struct objc_object {
-    Class isa  OBJC_ISA_AVAILABILITY;
+    Class isa;
 };
 
 struct objc_class : objc_object {
     Class superclass;
     cache_t cache;
     
-
     /// data 返回的是 class_rw_t* 指针，class_rw_t 存储了 class 的 ivars、methods、protocols等信息
     class_data_bits_t bits;    // class_rw_t * plus custom rr/alloc flags
     class_rw_t *data() { 
@@ -50,9 +46,6 @@ struct objc_class : objc_object {
     void setData(class_rw_t *newData) {
         bits.setData(newData);
     }
-
-
-
 }
 
 ```
@@ -89,20 +82,17 @@ struct class_ro_t {
     uint32_t flags;
     uint32_t instanceStart;
     uint32_t instanceSize;
-    const uint8_t * ivarLayout;
+    const uint8_t * ivarLayout; // <- 记录了哪些是 strong 的 ivar
+    const uint8_t * weakIvarLayout; // <- 记录了哪些是 weak 的 ivar
     
     const char * name;
     method_list_t * baseMethodList;
     protocol_list_t * baseProtocols;
     const ivar_list_t * ivars;
-
-    const uint8_t * weakIvarLayout;
     property_list_t *baseProperties;
 
     method_list_t *baseMethods() const {
         return baseMethodList;
     }
 };
-
 ```
-
