@@ -2,7 +2,7 @@
 
 client端：
 
-```
+``` c
 // create socket
 int fd = socket(AF_INET, SOCK_STREAM  , 0);
 BOOL success = (fd!=-1);
@@ -54,7 +54,7 @@ if (success) {
 
 server端
 
-```
+``` c
 int err;
 int fd = socket(AF_INET, SOCK_STREAM  , 0);
 BOOL success=(fd!=-1);
@@ -83,10 +83,10 @@ if (success) {
         struct sockaddr_in peeraddr;
         int peerfd;
         socklen_t addrLen;
-        addrLen=sizeof(peeraddr);
+        addrLen = sizeof(peeraddr);
         NSLog(@"prepare accept");
-        peerfd= accept(fd, (struct sockaddr *)&peeraddr, &addrLen);
-        success=(peerfd!=-1);
+        peerfd = accept(fd, (struct sockaddr *)&peeraddr, &addrLen);
+        success = (peerfd!=-1);
         if (success) {
             NSLog(@"accept success,remote address:%s,port:%d",inet_ntoa(peeraddr.sin_addr),ntohs(peeraddr.sin_port));
             char buf[1024];

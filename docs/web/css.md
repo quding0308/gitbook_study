@@ -5,7 +5,7 @@ cascade 瀑布；级联；
 
 从内容中分离样式，有助于复用，更容易维护，同样的内容可以使用不同的样式。
 
-### 使用：
+## 使用：
 ```
 <link rel="stylesheet" href="style1.css">
 ```
@@ -19,11 +19,7 @@ selector {  // 花括号中的部分为声明
 }
 ```
 
-### 如何工作
-
-
-### 层叠 和 继承
-
+## 层叠 和 继承
 
 #### 层叠
 1. 浏览器对HTML元素定义的默认样式
@@ -35,7 +31,7 @@ selector {  // 花括号中的部分为声明
 #### 继承
 
 
-### 选择器 Selectors
+## 选择器 Selectors
 
 #### tag selector(type selector)
 
@@ -142,6 +138,7 @@ B ~ *  表示 元素B之后的所有兄弟元素
 ```
 
 demo：
+
 ``` css
 // id 为data-table-1，table 中每行的第一个元素 为 bolder；第二个元素使用等宽字体。 
 #data-table-1 td:first-child {font-weight: bolder;}
@@ -161,9 +158,18 @@ div.menu-bar ul:hover ul {
 }
 ```
 
+## 分类
+
 ### 框属性
 
+``` css
+margin
 
+padding
+
+border
+
+```
 
 ### 文字样式
 
@@ -283,7 +289,7 @@ flex-direction: column-reverse;
 
 ### flex-wrap
 ``` css
-指定了内部元素单行显示还是多行显示，是否允许换行
+指定了内部元素如果一行无法显示时，是否允许换行
 
 取值：
 flex-wrap: nowrap // default value
@@ -295,10 +301,44 @@ flex-wrap: wrap-reverse
 ``` css
 flex-flow 是 flex-direction 和 flex-wrap 的简写。
 
-flex-flow: row nowrap   // default value
+flex-flow: row nowrap；   // default value
 
-flex-flow: wrap
+flex-flow: wrap；
 flex-flow: column wrap-reverse;
+```
+
+### justify-content (container属性，对子元素生效)
+
+``` css 
+定义了在主轴方向，如何分配元素直接的空间。
+只适用于 多行 flex容器。
+
+使用前提：所有弹性元素的 flex-glow 等于0，才生效。（如果存在至少一个弹性元素，则会自动占满空间）
+
+注意：如果没有主动设置 flex，此时 flex 默认为：flex: inherit inherit auto，则 justify-content 生效
+
+/* Distributed alignment */
+justify-content: space-between;  /* 均匀排列每个元素
+                                   首个元素放置于起点，末尾元素放置于终点 */
+justify-content: space-around;  /* 均匀排列每个元素
+                                   每个元素周围分配相同的空间 */
+justify-content: space-evenly;  /* 均匀排列每个元素
+                                   每个元素之间的间隔相等 */
+/* Baseline alignment */
+justify-content: baseline;
+justify-content: first baseline;
+justify-content: last baseline;
+
+/* Positional alignment */
+justify-content: center;     /* 居中排列 */
+justify-content: start;      /* Pack items from the start */
+justify-content: end;        /* Pack items from the end */
+justify-content: flex-start; /* 从行首起始位置开始排列 */
+justify-content: flex-end;   /* 从行尾位置开始排列 */
+justify-content: left;       /* Pack items from the left */
+justify-content: right;      /* Pack items from the right */
+
+
 ```
 
 ### align-items (container属性，对子元素生效)
@@ -319,17 +359,6 @@ align-items: flex-end;  // 元素向侧轴终点对齐
 align-items: baseline;
 ```
 
-### justify-content (container属性，对子元素生效)
-
-``` css 
-定义了在主轴方向，如何分配元素直接的空间。
-只适用于 多行 flex容器。
-
-使用前提：所有弹性元素的 flex-glow 等于0，才生效。（如果存在至少一个弹性元素，则会自动占满空间）
-
-注意：如果没有主动设置 flex，此时 flex 默认为：flex: inherit inherit auto，则 justify-content 生效
-
-```
 
 align-content 与 align-items 的区别：
 https://blog.csdn.net/sinat_27088253/article/details/51532992
