@@ -338,18 +338,52 @@ justify-content: flex-end;   /* 从行尾位置开始排列 */
 justify-content: left;       /* Pack items from the left */
 justify-content: right;      /* Pack items from the right */
 
+```
+
+### align-content (container属性，对子元素生效)
+
+定义了横轴方向(cross axis)，如何分配内容和空间。
+
+该属性对单行flexbox无效，也就是当设置 flex-wrap: nowrap 时，align-content 无效。
+
+``` css
+
+/* 默认对齐 stretch */ 
+align-content: normal;
+align-content: stretch;
+
+/* 分布式对齐 */
+align-content: space-between; /* 均匀分布项目
+                                 第一项与起始点齐平，
+                                 最后一项与终止点齐平 */
+align-content: space-around;  /* 均匀分布项目
+                                 项目在两端有一半大小的空间*/
+align-content: space-evenly;  /* 均匀分布项目
+                                 项目周围有相等的空间 */
+
 
 ```
 
 ### align-items (container属性，对子元素生效)
-``` css
-设置块中的对齐方式。
-用于设置让每一单行的容器剧中，而不是整个容器。
+
+align-items 用于设置 flex item 纵轴方向的对齐方式。
+
+align-items 关注纵轴方向单行元素内的对齐，align-content 关注纵轴方向多行元素的对齐。
+
+如果设置 flex-wrap: nowrap; ，则 align-content 无效，align-items 仍有效。
 
 对所有直接子节点的 align-self 统一设置。
 
-设置 Flex 在另一个方向的对齐方式。
+``` css
+The align-items property applies to all flex containers, and sets the
+default alignment of the flex items along the cross axis of each flex
+line.
 
+align-items has the same functionality as align-content but the difference is that it works to center every single-line container instead of centering the whole container.
+
+The align-content property only applies to multi-line flex containers, and aligns the flex lines within the flex container when there is extra space in the cross-axis.
+
+// 默认值 stretch 拉伸
 align-items: normal;
 align-items: stretch;
 
@@ -359,15 +393,20 @@ align-items: flex-end;  // 元素向侧轴终点对齐
 align-items: baseline;
 ```
 
+### align-self
 
-align-content 与 align-items 的区别：
-https://blog.csdn.net/sinat_27088253/article/details/51532992
-
-### align-content (container属性，对子元素生效)
+对 flex item 设置，会覆盖 container 中 align-items 的值。
 
 ``` css
-定义了侧轴方向，如何分配控件
+// default value
+flex-self: auto
 ```
+
+### align-content 与 align-items 的区别：
+
+https://blog.csdn.net/sinat_27088253/article/details/51532992
+
+https://stackoverflow.com/questions/31250174/css-flexbox-difference-between-align-items-and-align-content
 
 ### flex、flex-grow、flex-shrink、flex-basis
 flex
@@ -398,22 +437,12 @@ flex: 2 30px 等价于 flex: 2 1 30px
 flex: 2 2 等价于 flex: 2 2 auto
 ```
 
-### align-self
-
-``` css
-
-align-self 设置当前flex 元素的对齐方式，会覆盖 container 设置的 align-items 的值
-
-```
-
 ### order 
 规定了 弹性容器中的可伸缩项目在布局时的顺序。具有相同order的元素按代码顺序布局
 
 ```
 default value 0
 ```
-
-
 
 ### 参考
 - https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference
