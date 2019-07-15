@@ -22,12 +22,17 @@ struct property_list_t : entsize_list_tt<property_t, property_list_t, 0> {
 class property_array_t : public list_array_tt<property_t, property_list_t> {
 };
 
-// 注意：property_t 存储在 class_rw_t 中，跟 class_ro_t 没有关系
+// 注意：property_t 存储在 class_rw_t 中
 struct class_rw_t {
     // ...
     property_array_t properties;
     // ...
 };
+
+struct class_ro_t {
+    property_list_t *baseProperties;
+}
+
 ```
 
 ## runtime api
