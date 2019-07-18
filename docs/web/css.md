@@ -30,6 +30,7 @@ selector {  // 花括号中的部分为声明
 
 #### 继承
 
+继承
 
 ## 选择器 Selectors
 
@@ -156,6 +157,43 @@ div.menu-bar ul ul {
 div.menu-bar ul:hover ul {
     display: block;
 }
+```
+
+#### 属性选择器
+
+通过已经存在的属性名或属性值来匹配元素
+
+```
+// 存在 title 属性的 a 元素
+a[title] {
+    font-size: 2rem;
+}
+
+// 有 href 属性，并且值为 http://www.baidu.com 的 a 元素
+a[href="http://www.baidu.com"] {
+    font-style: bold;
+}
+
+// href 属性的值以 https:// 开头的 a 元素
+a[href^="https://"] {
+    font-style: bold;
+}
+
+// href 属性的值以 .com 结尾的 a 元素
+a[href$=".com"] {
+    font-style: bold;
+}
+
+// href 属性的值包含 baidu 字符的 a 元素
+a[href*="baidu"] {
+    font-style: bold;
+}
+
+[attr~=value]
+表示带有以 attr 命名的属性的元素，并且该属性是一个以空格作为分隔的值列表，其中[至少]一个值匹配"value"。
+
+[attr|=value]
+表示带有以 attr 命名的属性的元素，属性值为“value”或是以“value-”为前缀（"-"为连字符，Unicode编码为U+002D）开头。典型的应用场景是用来来匹配语言简写代码（如zh-CN，zh-TW可以用zh作为value）。
 ```
 
 ## 分类
@@ -444,5 +482,5 @@ flex: 2 2 等价于 flex: 2 2 auto
 default value 0
 ```
 
-### 参考
+## 参考
 - https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference

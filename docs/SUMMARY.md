@@ -146,8 +146,10 @@
 ### 其他
 
 * [web](web/index.md)
+    * [URL](web/url.md)
     * [HTML](web/html.md)
     * [CSS](web/css.md)
+        * [CSS](web/layout.md)
     * [es6](web/es6.md)
     * [js 基础知识](web/js-extension.md)
     * [js 对象](web/js-object.md)
