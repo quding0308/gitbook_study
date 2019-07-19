@@ -1,4 +1,5 @@
 
+## 概要
 HyperText Markup Language
 
 标记语言 描述内容的含义和结构
@@ -78,8 +79,29 @@ https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element
 
 
 
-#### JS操作 dom 与 CSS
+## JS操作 dom 与 CSS
 
 
 Ajax 
 Asynchronous JavaScript + XML（异步JavaScript和XML）
+
+## Window
+
+### Location
+
+表示当前 web 页面的 URL 信息
+
+```
+location.reload() // 重新刷新当前页面
+location.assign() // 加载指定页面（history 中有记录）
+location.replace()  // 加载指定页面（history 中没有记录）
+
+loation.href
+location.protocol   // http:
+location.host
+location.port
+location.pathname
+location.search
+location.hash
+location.origin
+```

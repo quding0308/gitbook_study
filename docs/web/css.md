@@ -5,7 +5,8 @@ cascade 瀑布；级联；
 
 从内容中分离样式，有助于复用，更容易维护，同样的内容可以使用不同的样式。
 
-## 使用：
+### 概要
+
 ```
 <link rel="stylesheet" href="style1.css">
 ```
@@ -19,7 +20,7 @@ selector {  // 花括号中的部分为声明
 }
 ```
 
-## 层叠 和 继承
+### 层叠 和 继承
 
 #### 层叠
 1. 浏览器对HTML元素定义的默认样式
@@ -32,7 +33,7 @@ selector {  // 花括号中的部分为声明
 
 继承
 
-## 选择器 Selectors
+### 选择器 Selectors
 
 #### tag selector(type selector)
 
@@ -196,8 +197,6 @@ a[href*="baidu"] {
 表示带有以 attr 命名的属性的元素，属性值为“value”或是以“value-”为前缀（"-"为连字符，Unicode编码为U+002D）开头。典型的应用场景是用来来匹配语言简写代码（如zh-CN，zh-TW可以用zh作为value）。
 ```
 
-## 分类
-
 ### 框属性
 
 ``` css
@@ -296,6 +295,22 @@ p {
 }
 ```
 
+### 媒体查询 @Media
+
+媒体查询，允许内容的呈现针对一个特定范围的输出设备而进行裁剪，而不必改变内容本身。
+
+官方文档：https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries
+
+```
+<link rel="stylesheet" media="(max-width: 800px)" href="example.css" />
+
+@media (max-width: 600px) {
+    .side_bar {
+        display: none;
+    }
+}
+```
+
 ### CSS Grid and Flexbox layout
 
 参考：
@@ -312,7 +327,7 @@ Grid 是二维布局（同时沿横向和纵向）
 https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flexible_Box_Layout
 
 
-### flex-flow、flex-direction、flex-wrap(container属性，对子元素生效)
+#### flex-flow、flex-direction、flex-wrap(container属性，对子元素生效)
 ``` css
 指定了内部子元素布局的主轴方向
 /* The direction text is laid out in a line */
@@ -325,7 +340,7 @@ flex-direction: column;
 flex-direction: column-reverse;
 ```
 
-### flex-wrap
+#### flex-wrap
 ``` css
 指定了内部元素如果一行无法显示时，是否允许换行
 
@@ -335,7 +350,8 @@ flex-wrap: wrap
 flex-wrap: wrap-reverse
 ```
 
-### flex-flow 
+#### flex-flow 
+
 ``` css
 flex-flow 是 flex-direction 和 flex-wrap 的简写。
 
@@ -345,7 +361,7 @@ flex-flow: wrap；
 flex-flow: column wrap-reverse;
 ```
 
-### justify-content (container属性，对子元素生效)
+#### justify-content (container属性，对子元素生效)
 
 ``` css 
 定义了在主轴方向，如何分配元素直接的空间。
@@ -378,7 +394,7 @@ justify-content: right;      /* Pack items from the right */
 
 ```
 
-### align-content (container属性，对子元素生效)
+#### align-content (container属性，对子元素生效)
 
 定义了横轴方向(cross axis)，如何分配内容和空间。
 
@@ -402,7 +418,7 @@ align-content: space-evenly;  /* 均匀分布项目
 
 ```
 
-### align-items (container属性，对子元素生效)
+#### align-items (container属性，对子元素生效)
 
 align-items 用于设置 flex item 纵轴方向的对齐方式。
 
@@ -431,7 +447,7 @@ align-items: flex-end;  // 元素向侧轴终点对齐
 align-items: baseline;
 ```
 
-### align-self
+#### align-self
 
 对 flex item 设置，会覆盖 container 中 align-items 的值。
 
@@ -440,13 +456,13 @@ align-items: baseline;
 flex-self: auto
 ```
 
-### align-content 与 align-items 的区别：
+#### align-content 与 align-items 的区别：
 
 https://blog.csdn.net/sinat_27088253/article/details/51532992
 
 https://stackoverflow.com/questions/31250174/css-flexbox-difference-between-align-items-and-align-content
 
-### flex、flex-grow、flex-shrink、flex-basis
+#### flex、flex-grow、flex-shrink、flex-basis
 flex
 ``` css
 flex: 1 1 20px;
@@ -475,7 +491,7 @@ flex: 2 30px 等价于 flex: 2 1 30px
 flex: 2 2 等价于 flex: 2 2 auto
 ```
 
-### order 
+#### order 
 规定了 弹性容器中的可伸缩项目在布局时的顺序。具有相同order的元素按代码顺序布局
 
 ```
