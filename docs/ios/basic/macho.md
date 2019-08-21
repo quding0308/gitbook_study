@@ -1,10 +1,16 @@
 ## Mach-O文件
-
+概览：
 ![img](/asserts/img/mach-o-1.gif)
 
-### 头部信息 mach_header 
+## Fat Binary Header
 
-记录一些元信息
+描述了 包括的arc 类型
+
+![img](/asserts/img/mach-header.png)
+
+![img](/asserts/img/fat-binary-header.png)
+
+## 头部信息 mach_header
 
 ```
 struct mach_header {
@@ -18,8 +24,13 @@ struct mach_header {
 };
 
 magic 表示大端还是小端
-    MH_MAGIC_64 // 64-bit big-endian magic
-    MH_CIGAM_64 // 64-bit little-endian magic
+    #define MH_MAGIC 0xfeedface //小端保存的32位文件
+    #define MH_CIGAM 0xcefaedfe //大端保存的32位文件
+    #define MH_MAGIC_64 0xfeedfacf //小端保存的64位文件
+    #define MH_CIGAM_64 0xcffaedfe //大端保存的64位文件
+    #define FAT_MAGIC 0xcafebabe //小端保存的FAT文件
+    #define FAT_CIGAM 0xbebafeca //大端保存的FAT文件
+
 
 cputype cpu类型
     CPU_TYPE_I386 => :i386,
@@ -45,10 +56,97 @@ sizeofcmds
 
 ```
 
+Load Commands 中保存了所有 Segment 和 dylib 的信息。
 
-### Mach-O 中的 segment
+### Segment
+
+一个 command 中保存的一个 segment 数据如下：
+
+```
+struct segment_command { /* for 32-bit architectures */
+    // LC_SEGMENT 或 LC_SEGMENT_64
+    uint32_t cmd; /* LC_SEGMENT */
+    uint32_t cmdsize; /* includes sizeof section structs */
+
+    // 名称
+    char segname[16]; /* segment name */
+    // 段虚拟地址
+    uint32_t vmaddr; /* memory address of this segment */
+    // 段大小
+    uint32_t vmsize; /* memory size of this segment */
+    uint32_t fileoff; /* file offset of this segment */
+    uint32_t filesize; /* amount to map from the file */
+    vm_prot_t maxprot; /* maximum VM protection */
+    vm_prot_t initprot; /* initial VM protection */
+    // 该segment 中 section 个数
+    uint32_t nsects; /* number of sections in segment */
+    uint32_t flags; /* flags */
+};
+
+struct segment_command_64 { /* for 64-bit architectures */
+    uint32_t cmd; /* LC_SEGMENT_64 */
+    uint32_t cmdsize; /* includes sizeof section_64 structs */
+    char segname[16]; /* segment name */
+    uint64_t vmaddr; /* memory address of this segment */
+    uint64_t vmsize; /* memory size of this segment */
+    uint64_t fileoff; /* file offset of this segment */
+    uint64_t filesize; /* amount to map from the file */
+    vm_prot_t maxprot; /* maximum VM protection */
+    vm_prot_t initprot; /* initial VM protection */
+    uint32_t nsects; /* number of sections in segment */
+    uint32_t flags; /* flags */
+};
+```
+
+### Section
+
+```
+struct section { /* for 32-bit architectures */
+    char sectname[16]; /* name of this section */
+    char segname[16]; /* segment this section goes in */
+    uint32_t addr; /* memory address of this section */
+    uint32_t size; /* size in bytes of this section */
+    uint32_t offset; /* file offset of this section */
+    uint32_t align; /* section alignment (power of 2) */
+    uint32_t reloff; /* file offset of relocation entries */
+    uint32_t nreloc; /* number of relocation entries */
+    uint32_t flags; /* flags (section type and attributes)*/
+    uint32_t reserved1; /* reserved (for offset or index) */
+    uint32_t reserved2; /* reserved (for count or sizeof) */
+};
+
+struct section_64 { /* for 64-bit architectures */
+    char sectname[16]; /* name of this section */
+    char segname[16]; /* segment this section goes in */
+    uint64_t addr; /* memory address of this section */
+    uint64_t size; /* size in bytes of this section */
+    uint32_t offset; /* file offset of this section */
+    uint32_t align; /* section alignment (power of 2) */
+    uint32_t reloff; /* file offset of relocation entries */
+    uint32_t nreloc; /* number of relocation entries */
+    uint32_t flags; /* flags (section type and attributes)*/
+    uint32_t reserved1; /* reserved (for offset or index) */
+    uint32_t reserved2; /* reserved (for count or sizeof) */
+    uint32_t reserved3; /* reserved */
+};
+
+```
+
+### 解析步骤
+
+1. 线解析mach_header先判断magic头如果是大端的记得每一个结构都得转小段
+2. 跟据mach_header.sizeofcmds确定load commands的范围为sizeof(mach_header) 然后跟据mach_header.ncmds读取
+3. 先使用load command简化结构预读取 判断cmd与cmdsize再使用完整结构读取
+4. 如果解析segment则跟据nsects来读取segment下的section
+5. section数据跟随在对应的segment结构后面单section对应的数据不一定跟随在section后面
+6. 跟据section的offset,size,flags来解析对应的数据
+
+
+## Mach-O 中的 segment
 
 一个目标文件中包含不同区域，每个区域被称为 **segment**
+
+
 
 #### __TEXT 
 
@@ -184,3 +282,4 @@ Catch访问NULL指针的非法操作的段
 ### 参考：
 - https://satanwoo.github.io/2017/06/13/Macho-1/
 - https://satanwoo.github.io/2017/06/29/Macho-2/
+- https://dlnn.net/2017/07/05/macho%E6%96%87%E4%BB%B6%E9%83%A8%E5%88%86%E8%A7%A3%E6%9E%90/

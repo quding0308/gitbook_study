@@ -150,6 +150,7 @@
     * [HTML](web/html.md)
     * [CSS](web/css.md)
     * [布局相关](web/layout.md)
+    * [事件处理](web/event.md)
     * [less介绍](web/less.md)
     * [es6](web/es6.md)
     * [js 基础知识](web/js-extension.md)
