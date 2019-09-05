@@ -87,6 +87,31 @@ Asynchronous JavaScript + XML（异步JavaScript和XML）
 
 ## Window
 
+属性
+```
+window.location
+
+window.history
+
+window.document
+
+window.frames
+
+window.localStorage
+
+window.indexDB
+
+window.alert()
+window.confirm()
+window.prompt()
+
+window.console()
+
+// cookie 属于 Document
+window.document.cookie
+
+```
+
 ### Location
 
 表示当前 web 页面的 URL 信息
@@ -105,3 +130,19 @@ location.search
 location.hash
 location.origin
 ```
+
+## Document
+
+### Cookie
+
+cookie 是 Document 的属性
+
+```
+window.document.cookie
+
+
+
+
+
+```
+

@@ -10,7 +10,9 @@ Assembly Language 简称 asm
 
 链接器的任务之一是为函数调用找到匹配的函数的可执行代码的位置。
 
-### 汇编指令
+### 寄存器
+
+
 
 
 
@@ -55,13 +57,12 @@ int fun(int *p) {
 // 给函数指针赋值
 fp = fun;
 
-
 ```
 
 
 
+### 汇编指令
 
-#### 
 
 ### 参考
 - http://www.ruanyifeng.com/blog/2018/01/assembly-language-primer.html
