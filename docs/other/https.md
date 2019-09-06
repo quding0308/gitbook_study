@@ -21,16 +21,21 @@ http 的报文是明文，会被直接看到。https 会做加密，防止被看
 
 ### https 证书
 
-https 证书包括：
+https 证书内包括：
 
 - 签发机构
-- 证书有效期
-- 域名
 - 申请者
+- 域名 domain
 - 公钥 pub_server
+- 证书有效期
+- 摘要
 
 ### 参考
 
 - https:https://tools.ietf.org/html/rfc2818.html
 - https://segmentfault.com/a/1190000015155372
 - 详细流程：https://www.jianshu.com/p/b0b6b88fe9fe
+
+
+校验域名
+校验证书
