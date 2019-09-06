@@ -24,8 +24,7 @@ HTTPURLResponse
 
 #### Demo
 
-``` c
-
+``` objective-c
 #import <AFNetworking/AFNetworking.h>
 
 @interface MyNetworkTest () <NSURLSessionDataDelegate>
@@ -219,7 +218,7 @@ NSSet *certificates = [AFSecurityPolicy certificatesInBundle:[NSBundle mainBundl
 
 可以针对某域名，单独处理不做 https 的证书校验
 
-``` r
+``` objective-c
 [_sessionManager setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession * _Nonnull session, NSURLAuthenticationChallenge * _Nonnull challenge, NSURLCredential *__autoreleasing  _Nullable * _Nullable credential) {
     if ([challenge.protectionSpace.host isEqualToString:@"com.xx.www"]) {
         return NSURLSessionAuthChallengePerformDefaultHandling;
@@ -234,4 +233,4 @@ NSSet *certificates = [AFSecurityPolicy certificatesInBundle:[NSBundle mainBundl
 ### 参考
 
 - https://juejin.im/post/5a332b6a6fb9a0451e3fd6b0
-- 不安全的https 示例 https://badssl.com/
+- 不安全的https示例  https://badssl.com/
