@@ -16,3 +16,11 @@ cd ../quding2012.github.io
 git add .
 git commit -m '1'
 git push
+
+
+cp -r _book/* ../quding0308.coding.me
+
+cd ../quding0308.coding.me
+git add .
+git commit -m '1'
+git push
