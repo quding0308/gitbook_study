@@ -1,5 +1,4 @@
-Hello World!😁😁
-123
+Hello World!😁
 
 技术栈：
 * 计算机基础
