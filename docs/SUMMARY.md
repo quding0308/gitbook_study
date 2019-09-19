@@ -9,6 +9,7 @@
     * [汇编语言](computer/assembly_language.md)
     * [POSIX](computer/posix.md)
     * [编程范式](computer/programing_paradigm.md)
+    * [FSM 状态机](computer/fsm_engine.md)
 
 * [网络](other/index.md)
     * [common](other/comm.md)
