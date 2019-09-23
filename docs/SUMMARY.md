@@ -154,14 +154,14 @@
     * [布局相关](web/layout.md)
     * [事件处理](web/event.md)
     * [less介绍](web/less.md)
-    * [es6](web/es6.md)
-    * [js 基础知识](web/js-extension.md)
-    * [js 对象](web/js-object.md)
     * [Content Security Policy](web/csp.md)
     * [页面渲染](web/render.md)
     * [页面加载优化](web/web_optimize.md)
     * [json的使用](web/json.md)
-
+    * [JavaScript 基础知识](web/js-extension.md)
+    * [JavaScript 对象](web/js-object.md)
+    * [ES6](web/es6.md)
+    
 * [android](android/index.md)
     * [activity](android/activity.md)
 
