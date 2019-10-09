@@ -161,10 +161,10 @@
     * [JavaScript 基础知识](web/js-extension.md)
     * [JavaScript 对象](web/js-object.md)
     * [ES6](web/es6.md)
+    * [Module](web/module.md)
     
 * [android](android/index.md)
     * [activity](android/activity.md)
-
 
 * [其他](other/index.md)
     * [长连方案](other/longconnection.md)
