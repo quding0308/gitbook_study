@@ -5,7 +5,7 @@
     "head_title": "quding0308",
     "head_description": "quding0308",
     "head_keywords": "quding0308",
-    "logo": "",
+    "logo": "./docs/asserts/img/favicon.ico",
     "author": "quding0308",
 
     "gitbook": ">= 3.0.0",
