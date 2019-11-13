@@ -1,9 +1,27 @@
+
 {
     "root": "./docs",
-    "plugins" : [ "code", "expandable-chapters" ],
-    "theme-default": {
-        "showLevel": true
-    },
-    "title": "学习笔记",
+    "title": "quding0308",
+    "head_title": "quding0308",
+    "head_description": "quding0308",
+    "head_keywords": "quding0308",
+    "logo": "",
     "author": "quding0308"
+
+    "gitbook": ">= 3.0.0",
+
+    "language": "zh-hans",
+    "plugins": [
+        "-sharing",
+        "-fontsettings",
+        "-lunr",
+        "-search",
+        "search-pro",
+        "theme-official",              
+        "anchor-navigation-ex",
+        "expandable-chapters"
+    ],
+
+    "pluginsConfig": {       
+    }   
 }
