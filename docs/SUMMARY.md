@@ -137,13 +137,12 @@
     * [内存优化](ios/optimize/memory.md)
     * [减小ipa包体积](ios/optimize/appsize.md)
 
-* [mvvm](mvvm/index.md)
-    * [rx-mvvm](mvvm/rx-mvvm.md)
-    * [RxSwift](mvvm/rxswift.md)
-    * [RxCocoa](mvvm/rxcocoa.md)
-  
-* [常见bug](ios/bug/index.md)
-    <!-- * [编译](ios/basic/compile.md) -->
+* [专题](ios/property/index.md)
+    * [操作二进制文件](ios/property/data.md)
+    * [rx-mvvm](ios/property/rx-mvvm.md)
+    * [RxSwift](ios/property/rxswift.md)
+    * [RxCocoa](ios/property/rxcocoa.md)  
+    * [常见bug](ios/property/iosbug.md)
 
 ### 其他
 
