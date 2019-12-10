@@ -1,11 +1,4 @@
 
-### 比较
-
-![img](/asserts/img/sotr1.png)
-
-从代码实现上来看，冒泡排序的数据交换要比插入排序的数据移动要复杂，冒泡排序需要 3 个赋值操作，而插入排序只需要 1 个。
-
-
 ### 冒泡排序
 
 1. 是原地排序
@@ -15,33 +8,39 @@
 ``` java 
 // 冒泡排序，a是数组，n表示数组大小
 public static void bubbleSort(int[] a, int n) {
-if (n <= 1) return;
+  if (n <= 1) return;
 
-for (int i = 0; i < n; ++i) {
-    // 提前退出标志位
-    boolean flag = false;
-    for (int j = 0; j < n - i - 1; ++j) {
-    if (a[j] > a[j+1]) { // 交换
-        int tmp = a[j];
-        a[j] = a[j+1];
-        a[j+1] = tmp;
-        // 此次冒泡有数据交换
-        flag = true;
-    }
-    }
-    if (!flag) break;  // 没有数据交换，提前退出
-}
+  for (int i = 0; i < n; ++i) {
+      // 提前退出标志位
+      boolean flag = false;
+      for (int j = 0; j < n - i - 1; j++) {
+        if (a[j] > a[j+1]) { // 交换
+            int tmp = a[j];
+            a[j] = a[j+1];
+            a[j+1] = tmp;
+            // 此次冒泡有数据交换(优化)
+            flag = true;
+        }
+      }
+      if (!flag) break;  // 没有数据交换，提前退出
+  }
 }
 ```
+
 ### 插入排序
 
 1. 是原地排序
 2. 是稳定排序
 3. 时间复杂度：O(n^2)
 
-第n个元素 保证前n个元素有序，然后取第n个元素与前n-1个元素比较，找到合适的位置插入，保证前n个元素有序。
+分为已排序区间和未排序区间，每次从未排序区间找一个元素，与已排序区间的元素作比较找到插入的位置。
 
 ``` java
+/**
+ * 1. 从未排序区间中找一个值A
+ * 2. 值A与已排序区间中的数据从后往前比较，已排序区间的值可能会往后挪，直到A找到了合适的位置
+ * 3. 把值A放到合适的位置（挪的值都比A大） 
+ */
 // 插入排序，a 表示数组，n 表示数组大小
 public void insertionSort(int[] a, int n) {
   if (n <= 1) return;
@@ -71,26 +70,31 @@ public void insertionSort(int[] a, int n) {
 选择排序算法的实现思路有点类似插入排序，也分已排序区间和未排序区间。但是选择排序每次会从未排序区间中找到最小的元素，将其放到已排序区间的末尾。
 
 ``` java
-  // 选择排序，a表示数组，n表示数组大小
-  public void selectionSort(int[] a, int n) {
-    if (n <= 1) return;
-    for (int i = 0; i < n - 1; i++) {
-      // 查找最小值
-      int minIndex = i;
-      for (int j = i + 1; j < n; j++) {
-        if (a[j] < a[minIndex]) {
-          minIndex = j;
-        }
-      }
-
-      if (minIndex != i) {
-        // 交换
-        int tmp = a[i];
-        a[i] = a[minIndex];
-        a[minIndex] = tmp;
+/**
+ * 1. 已排序区间不动
+ * 2. 遍历未排序区间，找到最小值的 minIndex
+ * 3. 把最小值挪到已排序区间的末尾 
+ */
+  // a表示数组，n表示数组大小
+public void selectionSort(int[] a, int n) {
+  if (n <= 1) return;
+  for (int i = 0; i < n - 1; i++) {
+    // 查找最小值
+    int minIndex = i;
+    for (int j = i + 1; j < n; j++) {
+      if (a[j] < a[minIndex]) {
+        minIndex = j;
       }
     }
+
+    if (minIndex != i) {
+      // 交换
+      int tmp = a[i];
+      a[i] = a[minIndex];
+      a[minIndex] = tmp;
+    }
   }
+}
 ```
 
 ### 希尔排序

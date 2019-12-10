@@ -12,6 +12,9 @@ Merge Sort
 3. 时间复杂度：O(n * log(n))
 
 ``` java
+// 1. 递归调用 merge(a, p, r) 函数
+// 2. 实现 merge 函数
+
 public class MergeSort {
 
   // 归并排序算法, a是数组，n表示数组大小
