@@ -1,5 +1,5 @@
 
-### 数据结构与算法
+## 数据结构与算法
 
 > Bad programmers worry about the code. Good programmers worry about data structures and their relationship
 
@@ -22,3 +22,13 @@
 
 CPU资源是有限的，任务的处理速度与线程个数并不是线性相关。相反，过多的线程反而会导致CPU频繁切换，处理性能下降。线程池的大小一般要综合考虑处理任务的特点和硬件环境，来事先设置。
 
+解算法题分两步
+- 拿到题选什么算法
+- 如何实现这个算法
+
+
+## 参考
+
+- https://www.lintcode.com/
+- https://www.zhihu.com/question/25693637/answer/747872819
+- https://www.zhihu.com/question/26934313/answer/743798587
