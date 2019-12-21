@@ -131,29 +131,20 @@ didCompleteWithError:(NSError *)error {
 
 ### AFNetworking
 
-AFNetworkReachabilityManager 什么原理？是否可以监听弱网络？
-
-
 **AFNetworking 库中一共有 6 个文件**
 
 - 2 个 SessionManager
     - AFURLSessionManager
     - AFHTTPSessionManager
 - 2 个 Serialization
-    - AFURLRequestSerialization 
+    - AFURLRequestSerialization
     - AFURLResponseSerialization
 - AFNetworkReachabilityManager
 - AFSecurityPolicy
 
-类关系：
-
-
-
 #### AFNetworkReachabilityManager 
 
 每次调用 [AFNetworkReachabilityManager manager] 都会创建一个新的实例
-
-
 
 #### AFSecurityPolicy
 
