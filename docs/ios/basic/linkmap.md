@@ -94,7 +94,6 @@ Demo：
 0x1000014F0	0x00000092	[  4] _main
 0x100001590	0x00000080	[  5] -[AppDelegate application:didFinishLaunchingWithOptions:]
 0x100001610	0x00000040	[  5] -[AppDelegate applicationWillResignActive:]
-...
 ```
 
 ### 查看 LinkMap 文件的工具
