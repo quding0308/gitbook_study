@@ -25,6 +25,55 @@
 - 拿到题选什么算法
 - 如何实现这个算法
 
+**Why learn algorithms and data structures?**
+
+https://github.com/raywenderlich/swift-algorithm-club/blob/master/Why%20Algorithms.markdown
+
+**What are algorithms and data structures?**
+
+https://github.com/raywenderlich/swift-algorithm-club/blob/master/What%20are%20Algorithms.markdown
+
+**Algorithm design techniques**
+
+https://github.com/raywenderlich/swift-algorithm-club/blob/master/Algorithm%20Design.markdown
+
+### 单词 
+
+``` shell
+Divide and conquer 分而治之，各个击破
+
+brute force 暴力破解，蛮力
+
+premature optimization 过早优化
+
+traverse 遍历
+traverseInOrder 中序遍历
+traversePreOrder 前序遍历
+traversePostOrder 后续遍历
+
+Naive, brute force solutions are often too slow for practical use but they're a good starting point. By writing the brute force solution, you learn to understand what the problem is really all about.
+
+Once you have a brute force implementation you can use that to verify that any improvements you come up with are correct.
+
+And if you only work with small datasets, then a brute force approach may actually be good enough on its own. Don't fall into the trap of premature optimization!
+```
+
+
+### 道理
+
+刘润对谈吴军：每个人都一定要有数学思维
+
+https://www.chons.cn/64286.html
+
+
+
+
+
+
+
+
+
+
 
 ## 参考
 
