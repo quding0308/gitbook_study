@@ -1,7 +1,8 @@
 
 ## 数据结构与算法
 
-> Bad programmers worry about the code. Good programmers worry about data structures and their relationship
+> Bad programmers worry about the code. 
+> Good programmers worry about data structures and their relationship
 
 特定数据结构是对特定场景的抽象
 
@@ -12,17 +13,15 @@
 - 为了解决某一领域的问题。例如图
 - 使用某种算法可以简化计算方式，一般通过 数学来简化或转化为另一个问题
 
-算法是抽象出的模型，学习完后需要应用于具体的编程实例中。
+算法是抽象出的模型，学习完后需要应用于具体的编程实例中
 
 学习的过程：
 1. 学习不同算法和数据类型，各自的优缺点和实际应用场景
 2. 通过阅读源码学习具体算法的使用
 3. 在编程中可以熟练使用不同算法
 
+解算法题分两步：
 
-CPU资源是有限的，任务的处理速度与线程个数并不是线性相关。相反，过多的线程反而会导致CPU频繁切换，处理性能下降。线程池的大小一般要综合考虑处理任务的特点和硬件环境，来事先设置。
-
-解算法题分两步
 - 拿到题选什么算法
 - 如何实现这个算法
 

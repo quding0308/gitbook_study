@@ -12,9 +12,9 @@ XCode -> Project -> Build Settings -> 把Write Link Map File选项设为yes，�
 
 ### LinkMap文件包含3部分：
 
-1.Object Files
+#### Object Files
 
-这部分内容都是 .m文件编译后的.o文件和需要link的.a文件。签名是文件编号，后面是文件路径。
+这部分内容都是 .m 文件编译后的 .o 文件和需要 link 的 .a 文件。前面是文件编号，后面是文件路径。
 
 ```
 # Object files:
@@ -26,9 +26,9 @@ XCode -> Project -> Build Settings -> 把Write Link Map File选项设为yes，�
 [ 10] /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.1.sdk/System/Library/Frameworks//UIKit.framework/UIKit.tbd
 ```
 
-2.Sections 
+#### Sections 
 
-这里描述的是每个 Section 在可执行文件中的位置和大小。每个 Section 的 Segment 分为 __TEXT代码段 和 __DATA数据段 两种类型
+这里描述的是每个 Section 在可执行文件中的位置和大小。每个 Section 的 Segment 分为 __TEXT 代码段 和 __DATA  数据段 两种类型
 
 格式：
 ```
@@ -70,7 +70,7 @@ Demo:
 0x100003FE8	0x000000C0	__DATA	__data
 ```
 
-3.Symbols 
+#### Symbols 
 
 Symbols 对 Section 进行了再划分。这里会描述所有的 methods、ivar和字符串等对应的地址、大小、文件编号信息。
 
@@ -87,7 +87,7 @@ struct Symbol {
 Demo：
 ```
 # Symbols:
-# Address	Size    	File  Name
+# Address	   Size      	File     Name
 0x100001450	0x00000027	[  2] -[HelloWorld hello]
 0x100001480	0x00000040	[  3] -[ViewController viewDidLoad]
 0x1000014C0	0x00000027	[  3] -[MyClass hello]
