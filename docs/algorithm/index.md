@@ -51,6 +51,11 @@ traverseInOrder 中序遍历
 traversePreOrder 前序遍历
 traversePostOrder 后续遍历
 
+orderCriteria 排序标准
+shift 转移，变换
+shift down 下沉
+stride 跨步
+
 Naive, brute force solutions are often too slow for practical use but they're a good starting point. By writing the brute force solution, you learn to understand what the problem is really all about.
 
 Once you have a brute force implementation you can use that to verify that any improvements you come up with are correct.
@@ -65,7 +70,7 @@ And if you only work with small datasets, then a brute force approach may actual
 
 https://www.chons.cn/64286.html
 
-
+写递归代码的关键就是找到如何将大问题分解为小问题的规律，并且基于此写出递推公式，然后再推敲终止条件，最后将递推公式和终止条件翻译成代码。
 
 
 
