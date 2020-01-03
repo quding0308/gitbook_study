@@ -75,8 +75,37 @@ https://www.chons.cn/64286.html
 
 
 
+## 其他数据结构
+
+### Trie
+
+字典树
+
+https://github.com/raywenderlich/swift-algorithm-club/tree/master/Trie
 
 
+![img](/asserts/img/trie.jpg)
+
+特点：
+- 查找操作 have a better worst-case time complexity
+- 不像 hashmap， 不需要担心 key 冲突的问题
+- trie 默认是有排序的
+
+时间复杂度(n为一个string的长度)
+- contains O(n)
+- insert O(n)
+- remove O(n)
+
+适用场景：
+- 根据输入的单词，提示可能输入的单词。
+
+### Skip List
+
+
+
+### Red-Black Tree
+
+A red-black tree (RBT) is a balanced version of a Binary Search Tree guaranteeing that the basic operations (search, predecessor, successor, minimum, maximum, insert and delete) have a logarithmic worst case performance.
 
 
 

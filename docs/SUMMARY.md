@@ -40,6 +40,7 @@
         * [桶排序](algorithm/sort/sort4.md)
     * [链表](algorithm/linkedlist.md)
     * [图](algorithm/graph.md)
+    * [求最短路径](algorithm/dijkstra.md)
     * [符号表](algorithm/symbolTable/index.md)
         * [哈希表](algorithm/symbolTable/hashTable.md)
     * [二叉树](algorithm/binarytree/index.md)
