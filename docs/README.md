@@ -31,16 +31,21 @@ Hello World!😁
     * 
 * iOS
     * iOS系统相关
-        * Runloop
+        * Runloop【1】
         * iOS中常用锁
         * Autolayout 布局
         * App 签名原理
-        * GCD使用
+        * GCD使用【1】
         * Animation
-            * 
     * ObjC语言
-        * runtime
-        * 语言底层实现
+        * runtime 【1】
+        * nscopying == 等语言基础知识
+        * [KVO 原理](http://blog.quding0308.com/blog/2018/09/01/kvo.html)
+        * synchronize 关键字
+        * ARC 底层实现
+        * autorelease 底层原理
+        * 
+        
     * 第三方库源码分析
         * mars 使用
         * 
