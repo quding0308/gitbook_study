@@ -1,4 +1,33 @@
+
+## runtime api
+```
+const char * property_getName(objc_property_t property);
+
+// 示例: T@"NSString",&,N,V_lastName
+const char * property_getAttributes(objc_property_t property);
+
+char * property_copyAttributeValue(objc_property_t property, const char *attributeName);
+
+objc_property_attribute_t * property_copyAttributeList(objc_property_t property, unsigned int *outCount);
+```
+
+## class runtime api
+```
+objc_property_t class_getProperty(Class cls, const char *name);
+
+objc_property_t  _Nonnull * class_copyPropertyList(Class cls, unsigned int *outCount);
+
+BOOL class_addProperty(Class cls, const char *name, const objc_property_attribute_t *attributes, unsigned int attributeCount);
+
+void class_replaceProperty(Class cls, const char *name, const objc_property_attribute_t *attributes, unsigned int attributeCount);
+```
+
 ## 概要
+
+Property 在编译阶段会生成 setter 和 getter 方法。
+
+使用 property 时，编译生成的代码实际是调用 setter 和 getter 方法。
+
 
 ```
 // property_t 等价于 
@@ -33,29 +62,6 @@ struct class_ro_t {
     property_list_t *baseProperties;
 }
 
-```
-
-## runtime api
-```
-const char * property_getName(objc_property_t property);
-
-// 示例: T@"NSString",&,N,V_lastName
-const char * property_getAttributes(objc_property_t property);
-
-char * property_copyAttributeValue(objc_property_t property, const char *attributeName);
-
-objc_property_attribute_t * property_copyAttributeList(objc_property_t property, unsigned int *outCount);
-```
-
-## class runtime api
-```
-objc_property_t class_getProperty(Class cls, const char *name);
-
-objc_property_t  _Nonnull * class_copyPropertyList(Class cls, unsigned int *outCount);
-
-BOOL class_addProperty(Class cls, const char *name, const objc_property_attribute_t *attributes, unsigned int attributeCount);
-
-void class_replaceProperty(Class cls, const char *name, const objc_property_attribute_t *attributes, unsigned int attributeCount);
 ```
 
 ## 源码解析

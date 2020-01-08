@@ -1,3 +1,47 @@
+b
+## runtime api
+
+### Method
+```
+id method_invoke(id receiver, Method m, ...);
+void method_invoke_stret(id receiver, Method m, ...);
+
+SEL method_getName(Method m);
+IMP method_getImplementation(Method m);
+const char * method_getTypeEncoding(Method m);
+
+char * method_copyReturnType(Method m);
+char * method_copyArgumentType(Method m, unsigned int index);
+
+void method_getReturnType(Method m, char *dst, size_t dst_len);
+void method_getArgumentType(Method m, unsigned int index, char *dst, size_t dst_len);
+
+struct objc_method_description * method_getDescription(Method m);
+
+// 重新设置 IMP
+IMP method_setImplementation(Method m, IMP imp);
+
+// 两个 method 替换 IMP 的实现
+void method_exchangeImplementations(Method m1, Method m2);
+
+```
+
+### class
+
+```
+// 遍历查找父类 method
+Method class_getInstanceMethod(Class cls, SEL name);
+Method class_getClassMethod(Class cls, SEL name);
+
+// 返回当前 class 内存储的 methods  (cls->data()->methods)
+Method  _Nonnull * class_copyMethodList(Class cls, unsigned int *outCount);
+
+BOOL class_addMethod(Class cls, SEL name, IMP imp, const char *types);
+IMP class_replaceMethod(Class cls, SEL name, IMP imp, const char *types);
+
+IMP class_getMethodImplementation(Class cls, SEL name);
+IMP class_getMethodImplementation_stret(Class cls, SEL name);
+```
 
 ## 概要
 
@@ -34,47 +78,82 @@ struct class_ro_t {
 };
 ```
 
-## runtime api
+## method_invoke
 
-### Method
+示例
+``` java
+@interface Person : NSObject
+@property (nonatomic, copy) NSString *first;
+@property (nonatomic, copy) NSString *last;
+- (void)sayHello;
+@end
+NS_ASSUME_NONNULL_END
+@interface Person (Extension2)
+@property (nonatomic, copy) NSString *extension2_first;
+@property (nonatomic, copy) NSString *extension2_last;
+@end
+@interface Person (Extension1)
+@property (nonatomic, copy) NSString *extension1_first;
+@property (nonatomic, copy) NSString *extension1_last;
+@end
+
+@implementation Person
+- (void)sayHello {
+    NSLog(@"=== sayHello");
+}
+- (void)sayGoodBye:(NSString *)name {
+    NSLog(@"=== bye %@", name);
+}
+- (NSString *)getName {
+    return @"Peter";
+}
+- (Person *)getNewPerson {
+    return [[Person alloc] init];
+}
+@end
+@implementation Person (Extension2)
+- (void)sayHello {
+    NSLog(@"=== Extension2 sayHello");
+}
+@end
+@implementation Person (Extension1)
+- (void)sayHello {
+    NSLog(@"=== Extension1 sayHello");
+}
+@end
 ```
-id method_invoke(id receiver, Method m, ...);
-void method_invoke_stret(id receiver, Method m, ...);
 
-SEL method_getName(Method m);
-IMP method_getImplementation(Method m);
-const char * method_getTypeEncoding(Method m);
+``` java
+// 没有参数
+((void(*)(id,Method))method_invoke)(p, helloMethod);
 
-IMP method_setImplementation(Method m, IMP imp);
-void method_exchangeImplementations(Method m1, Method m2);
+// 调用某个方法
+Method byeMethod = class_getInstanceMethod(cls, NSSelectorFromString(@"sayGoodBye:"));
+((void(*)(id,Method,id))method_invoke)(p, byeMethod, @"Peter");
 
-char * method_copyReturnType(Method m);
-char * method_copyArgumentType(Method m, unsigned int index);
+Method getNameMethod = class_getInstanceMethod(cls, NSSelectorFromString(@"getName"));
+id result = ((NSString* (*)(id,Method))method_invoke)(p, getNameMethod);
 
-void method_getReturnType(Method m, char *dst, size_t dst_len);
-void method_getArgumentType(Method m, unsigned int index, char *dst, size_t dst_len);
+Method getNewPersonMethod = class_getInstanceMethod(cls, NSSelectorFromString(@"getNewPerson"));
+id result1 = ((NSString* (*)(id,Method))method_invoke)(p, getNewPersonMethod);
 
-struct objc_method_description * method_getDescription(Method m);
+// 调用类中定义的方法，不调用 category 中定义的
+// 根据 method_name 遍历找到最后一个 Method 然后调用
+
+Method helloMethod = NULL;
+unsigned int outCount = 0;
+Method *start = class_copyMethodList(cls, &outCount);
+for (unsigned int i=0; i<outCount; i++) {
+    Method method = *(start+i);
+    
+    if (strcmp("sayHello", NSStringFromSelector(selector).UTF8String) == 0) {
+        helloMethod = method;
+    }
+}
+
 ```
 
-### class
-
-```
-// 遍历查找父类 method
-Method class_getInstanceMethod(Class cls, SEL name);
-Method class_getClassMethod(Class cls, SEL name);
-
-// 返回当前 class 内存储的 methods  (cls->data()->methods)
-Method  _Nonnull * class_copyMethodList(Class cls, unsigned int *outCount);
-
-BOOL class_addMethod(Class cls, SEL name, IMP imp, const char *types);
-IMP class_replaceMethod(Class cls, SEL name, IMP imp, const char *types);
-
-IMP class_getMethodImplementation(Class cls, SEL name);
-IMP class_getMethodImplementation_stret(Class cls, SEL name);
-```
-
-### 源码实现
+## 源码实现
 
 ### get method
 ```

@@ -1,7 +1,7 @@
 ## Selector
 
 ### runtime api
-```
+``` java
 sel_getName
     Returns the name of the method specified by a given selector.
 sel_registerName
@@ -16,15 +16,26 @@ sel_isEqual
 
 ### 结论：
 
-1. ObjC setup 时创建了一 hastable，key 为 (char *)name， value 为 SEL ，一个内存地址(intptr_t)。
+1. ObjC setup 时创建了一 hastable，key 为 (char *)name， value 为 SEL ，一个内存地址(intptr_t)
 2. 在使用 @selector() 时会从这个表中根据名字查找对应的 SEL 。如果没有找到，则会生成一个 SEL 并添加到表中
 3. 在编译期间会扫描全部的头文件和实现文件将其中的方法以及使用 @selector() 生成的选择子加入到选择子表中
 4. 每个 SEL 实际是一个 内存地址 intptr_t。而该地址指向的是 c 的字符串 (char *)
+5. SEL 在 App 运行时全局唯一
+
+
+```
+调用 NSSelectorFromString(@"testSelector") 会使用 sel_registerName(name) 来查找 selector
+
+调用 NSStringFromSelector() 会调用 sel_getName 来查找 name
+
+@selector(testSelector) 没有走 runtime api ，猜测应该是根据 method 直接获取 method_name 
+```
 
 ### 源码实现
 
-```
+``` java
 typedef intptr_t SEL
+备注：typedef long intptr_t  // 内存地址
 
 // 两个指针知否指向同一个内存地址
 BOOL sel_isEqual(SEL lhs, SEL rhs)
@@ -104,7 +115,7 @@ SEL sel_registerNameNoLock(const char *name, bool copy) {
 // Initialize selector tables and register selectors used internally
 sel_init(wantsGC, selrefCount); 中注册了部分 SEL
 
-```
+``` java
 void sel_init(bool wantsGC, size_t selrefCount)
 {
 #define s(x) SEL_##x = sel_registerNameNoLock(#x, NO)

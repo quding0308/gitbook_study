@@ -1,12 +1,15 @@
-## 添加 Class、实例化对象
-
-### runtime api
+## runtime api
 
 ```
+// 根据 superclass 创建分配新的 class，该 class 会创建分配对应的 superclass 和 meta
 objc_allocateClassPair
     Creates a new class and metaclass.
+
+// 回收 class 对应的内存空间
 objc_disposeClassPair
     Destroys a class and its associated metaclass.
+
+// 把 name: Class 键值对存储到 gdb_objc_realized_classes table 中，如果 name 已经有对应的值，则存储失败
 objc_registerClassPair
     Registers a class that was allocated using objc_allocateClassPair.
 objc_duplicateClass
@@ -15,13 +18,27 @@ objc_duplicateClass
 
 Instantiating Classes
 ```
+// 创建实例
 class_createInstance
     Creates an instance of a class, allocating memory for the class in the default malloc memory zone.
+
 objc_constructInstance
     Creates an instance of a class at the specified location.
 objc_destructInstance
     Destroys an instance of a class without freeing memory and removes any of its associated references.
 ```
+
+## 添加 Class、实例化对象
+
+在 runtime 阶段，会创建一个 map 存储所有的 class 。key 为 classname，value 为 Class。
+
+```
+// Maps class name to Class, for in-use classes only.
+OBJC_EXPORT NXMapTable * _Nullable gdb_objc_realized_classes
+```
+
+
+
 
 ### 源码
 
