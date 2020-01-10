@@ -1,7 +1,12 @@
-### runloop
-
+## runloop
 
 ### 一些疑问
+
+- 为什么要有 runloop ，解决了什么问题？
+- runloop 运行原理
+- runloop 如何使用
+- 实际开发中有哪些地方可以使用？
+
 
 - RunLoop在系统中所处的角色
 - RunLoop具体作用是什么？有没有其他类似的机制可以代替角色？
@@ -12,9 +17,9 @@
 - mainRunLoop 与 其他RunLoop的区别？有哪些特权？
 - 具体如何运转？
 
-![img](/asserts/img/runloop.png)
 
 ### Runloop 简介
+
 所谓 Runloop 就是 苹果设计的一种 **在当前线程，持续调度各种任务** 的运行机制。
 
 伪代码：
@@ -93,12 +98,33 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 ```
 
 添加 obsrver
-``` Swift
-CFRunLoopRef loop = CFRunLoopGetMain();
-CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(NULL, kCFRunLoopBeforeSources, true, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
-    NSLog(@"observer %lu", activity);
-});
-CFRunLoopAddObserver(loop, observer, kCFRunLoopCommonModes);
+``` java
+- (void)setupObserverRef:(CFRunLoopRef)runloopRef {
+    CFRunLoopObserverRef observer =
+        CFRunLoopObserverCreateWithHandler(NULL,
+                                           kCFRunLoopEntry | kCFRunLoopBeforeTimers | kCFRunLoopBeforeSources | kCFRunLoopBeforeWaiting | kCFRunLoopAfterWaiting | kCFRunLoopExit,
+                                           true,
+                                           0,
+                                           ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+        if ((activity & 1) == 1) {
+            NSLog(@"=== observer %lu kCFRunLoopEntry", activity);
+        } else if (((activity >> 1) & 1) == 1) {
+            NSLog(@"=== observer %lu kCFRunLoopBeforeTimers", activity);
+        }  else if (((activity >> 2) & 1) == 1) {
+            NSLog(@"=== observer %lu kCFRunLoopBeforeSources", activity);
+        }  else if (((activity >> 5) & 1) == 1) {
+            NSLog(@"=== observer %lu kCFRunLoopBeforeWaiting", activity);
+        }  else if (((activity >> 6) & 1) == 1) {
+            NSLog(@"=== observer %lu kCFRunLoopAfterWaiting", activity);
+        }  else if (((activity >> 7) & 1) == 1) {
+            NSLog(@"=== observer %lu kCFRunLoopExit", activity);
+        } else {
+            NSLog(@"=== observer %lu kCFRunLoopAllActivities", activity);
+        }
+    });
+//    CFRunLoopAddObserver(runloopRef, observer, kCFRunLoopCommonModes);
+    CFRunLoopAddObserver(runloopRef, observer, kCFRunLoopDefaultMode);
+}
 ```
 
 ### Runloop 源码
@@ -178,7 +204,6 @@ CFRunLoopRef CFRunLoopGetCurrent(void) {
     if (rl) return rl;
     return _CFRunLoopGet0(pthread_self()); //#include <pthread.h> 中可以获取pthread_self
 }
-
 ```
 
 ### 获取 fps
@@ -203,17 +228,13 @@ _count = 0;
 
 启动子线程，定时像主线程发送 ping，如果超时没有收到pong，则认为 此时主线程卡顿。获取当时的 stack trace
 
-参考：
-
-- http://mrpeak.cn/blog/ui-detect/
-- http://ios.jobbole.com/93085/
-
-### performSelector:afterDelay:
-
-
-
-
 ### 参考：
+
 - https://blog.ibireme.com/2015/05/18/runloop/
+- https://stackoverflow.com/questions/7222449/nsdefaultrunloopmode-vs-nsrunloopcommonmodes
+- https://www.jianshu.com/p/ccceb83a5511
+- https://juejin.im/post/5a352c6c5188251fbd33b345#heading-10
 - https://mp.weixin.qq.com/s/XbdezDo2xu-9SaSmid2pbw
-- MrPeak: https://mp.weixin.qq.com/s/XbdezDo2xu-9SaSmid2pbw
+- http://mrpeak.cn/blog/ui-detect/
+- http://mrpeak.cn/blog/ios-runloop/
+- http://ios.jobbole.com/93085/

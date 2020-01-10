@@ -47,7 +47,7 @@ Hello World!😁
         * 
     * 第三方库源码分析
         * mars 使用
-        * 
+        * SDImage 
     * 其他工具
         * CocoaPods 使用
         * fastlane 使用
@@ -72,8 +72,10 @@ Hello World!😁
         * App如何分配内存
         * 如何实时查看
         * 如何线上监控
-    * Crash优化
+    * Crash 闪退优化
         * 如何收集Crash
+        * 抓闪退的原理
+        * 常见闪退类型，分别如何处理？
         * 如何上传，使用dsym 分析crash
     * 卡顿优化
         * 如何监控卡顿

@@ -48,6 +48,8 @@ IMP class_getMethodImplementation_stret(Class cls, SEL name);
 ```
 typedef struct method_t *Method;
 
+typedef intptr_t IMP // 一个指针
+
 struct method_t {
     SEL name;
     const char *types;
