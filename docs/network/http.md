@@ -1,16 +1,21 @@
-## http
+# HTTP
 
-### Request
-格式
+问题：
+- iOS 可以主动设置 http 版本吗？
+- 
+
+## Request
+格式：
 ```
-[Request Line] <method> <request-URL> <version> [CRLF]
+[Request Line] <method> <request-url> <version>
 general-header
 request-header
-entity-header[CRLF]
-[CRLF]
+entity-header
+[空一行]
 message-body
 ```
 
+示例：
 ```
 POST http://www.example.com HTTP/1.1
 Content-Type: application/x-www-form-urlencoded;charset=utf-8
@@ -19,22 +24,19 @@ accept-language: zh-CN
 title=test&sub%5B%5D=1&sub%5B%5D=2&sub%5B%5D=3
 ```
 
-
-### Response
+## Response
 
 格式：
-
 ```
-[Status Line] <version> <status code> <Reason Phrase> [CRLF]
+[Status Line] <version> <status code> <Reason Phrase>
 general-header
 response-header
-entity-header[CRLF]
-[CRLF]
+entity-header
+[空一行]
 message-body
 ```
 
 示例：
-
 ```
 HTTP/1.1 200 OK
 Content-Length: 3059
@@ -49,45 +51,48 @@ Connection: keep-alive
 <html>...</html>
 ```
 
-### Status Code 状态码
+## Status Code 状态码
 
-- 1xx 消息——请求已被服务器接收，继续处理 Request received, continuing process
+- 1xx 消息——请求已被服务器接收，等待继续处理
 - 2xx 成功——请求已成功被服务器接收、理解、并接受
-- 3xx 重定向——需要后续操作才能完成这一请求 Further action must be taken in order to
-        complete the request
-- 4xx 请求错误——请求含有词法错误或者无法被执行 Client Error - The request contains bad syntax or cannot be fulfilled
-- 5xx 服务器错误——服务器在处理某个正确请求时发生错误 The server failed to fulfill an apparently
-        valid request
+- 3xx 重定向
+- 4xx 客户端请求错误
+- 5xx 服务器错误
 
+常用错误码：
 ```
 100 Continue
 101 Switching Protocols
-服务器已经理解了客户端的请求，并将通过Upgrade消息头通知客户端采用不同的协议来完成这个请求。在发送完这个响应最后的空行后，服务器将会切换到在Upgrade消息头中定义的那些协议。WebSocket 使用
+服务器已经理解了客户端的请求，并将通过 Upgrade 消息头通知客户端采用不同的协议来完成这个请求。在发送完这个响应最后的空行后，服务器将会切换到在Upgrade消息头中定义的那些协议。WebSocket 在创建连接阶段，切换协议
 
 200 OK
 201 Created
 202 Accepted
+204 No Content 服务器正常处理了请求，但没有资源返回
+206 Partial Content 表示客户端进行了范围请求，服务端成功执行了这次请求
 
-301 Moved Permanently **重定向**资源被永久移动到了新位置
-304 Not Modified
+301 Moved Permanently 资源被永久移动到了新位置，之后使用新的url访问资源（如果保存为了书签，书签也会更新）
+302 Found 临时重定向 请求的资源被分配了新的 url ，本次访问使用新 url
+303 See Other 与 302 类似，但需要明确使用 GET 访问
+304 Not Modified 资源未修改，不会返回响应body
 
-400 Bad Request
-401 
-403 Forbidden 服务器已接收到请求，但拒绝执行
-404 Not found
+400 Bad Request 表示请求报文中存在语法错误
+401 Unauthorized 发送的请求需要通过 http 认证
+403 Forbidden 服务器已接收到请求，但拒绝了访问
+404 Not found 服务器上无法找到请求资源
+405 Method Not Allowed
 
-500 Internal Server Error
+500 Internal Server Error 服务器在处理请求时发生错误（可能是代码bug）
 501 Not Implemented
 502 Bad Gateway
+503 Service Unavailable 服务器无法处理请求，服务器可能处于超负载或正在停机维护
 ```
 
-参考：https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81#1xx%E6%B6%88%E6%81%AF
+## header
 
-### header
+### General Header
 
-#### General Header
-
-##### Upgrade
+### Upgrade
 
 提供一个机制，可以切换 protocol。
 
@@ -98,13 +103,77 @@ server 返回新选定的 protocol， 返回码为 101
 
 ```
 
-##### Content-Type
+### Content-Type
+
+### request post的Content-Type的设置
+
 ```
-Content-Type: application/x-www-form-urlencoded
 Content-Type: application/json
+Content-Type: application/x-www-form-urlencoded
+Content-Type: multipart/form-data
 ```
 
-##### HSTS
+#### application/json
+
+post参数以json格式提交
+
+``` c
+:method: POST
+:scheme: https
+:path: /xuntong/ecLite/convers/v4/groupList
+:authority: www.yunzhijia.com
+cookie: gl=7b0f2170-0553-4ac4-8b19-f6c271bbc86c
+accept: */*
+content-type: application/json
+accept-language: zh-CN
+content-length: 57
+x-request-id: 0F02D601-E112-4C0F-8C74-054BC8F8F328
+opentoken: 4b3b45a4fe38f22e4cd62e665015bb96
+user-agent: 10200/10.1.1;iOS 12.1;Apple;iPhone10,2;102;deviceId:72c9209e-3c13-4987-814f-e0843bfd0f5b;deviceName:quding;clientId:10200;os:iOS 12.1;brand:Apple;model:iPhone10,2;lang:zh-CN;fontNum:0
+accept-encoding: br, gzip, deflate
+
+{"useMS":true,"lastUpdateTime":"2018-11-03 14:44:20.135"}
+```
+
+#### application/x-www-form-urlencoded
+
+处理 <form> 提交的一种格式，key 和 value 被编码，使用 = 连接，使用 & 分割
+
+``` c
+POST /test HTTP/1.1
+Host: foo.example
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 27
+
+field1=value1&field2=value2
+```
+
+#### Content-Type: multipart/form-data
+
+处理 <form> 提交的一种内容格式。每个 value 都被作为单独的一块提交，由定义好的 boundary 作为分隔符
+
+如果有二进制文件要提交，需要使用这种方式
+
+application/x-www-form-urlencoded 与 multipart/form-data 的比较， [参考这里](https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data)
+
+```c
+POST /test HTTP/1.1 
+Host: foo.example
+Content-Type: multipart/form-data;boundary="boundary" 
+
+--boundary 
+Content-Disposition: form-data; name="field1" 
+
+value1 
+--boundary 
+Content-Disposition: form-data; name="field2"; filename="example.txt" 
+
+value2
+--boundary--
+```
+
+
+### HSTS
 ```
 Strict-Transport-Security: max-age=0
 
@@ -115,7 +184,7 @@ max-age=<expire-time>
 ```
 
 
-#### Request Header
+### Request Header
 
 ```
 Host: www.w3.org
@@ -131,9 +200,9 @@ If-Modified-Since: Sat, 29 Oct 1994 19:43:31 GMT
 
 ```
 
-#### Response Header
+### Response Header
 
-##### Cache-Control
+### Cache-Control
 
 ```
 Cache-Control: public, max-age=0
@@ -142,7 +211,7 @@ Cache-Control: public, max-age=0
 
 ### Entity
 
-#### Entity Header
+### Entity Header
 
 ```
 Allow: GET, HEAD, PUT
@@ -172,10 +241,23 @@ extension-header
 
 ```
 
-#### Entity Body
+### Entity Body
 
 
 
+### response 的返回数据
+```
+:status: 200
+server: openresty
+date: Sat, 03 Nov 2018 06:47:07 GMT
+content-type: application/json;charset=UTF-8
+vary: Accept-Encoding
+strict-transport-security: max-age=15768000
+strict-transport-security: max-age=0
+content-encoding: gzip
+
+{"data":null,"errorMessage":"验证用户失败","success":false,"errorCode":10008}
+```
 
 
 ### HTTP2.0和HTTP1.X相比的新特性
@@ -187,3 +269,4 @@ extension-header
 ### 参考
 
 - http: https://tools.ietf.org/html/rfc2616#section-5
+- https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81#1xx%E6%B6%88%E6%81%AF
