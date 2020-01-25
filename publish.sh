@@ -20,11 +20,11 @@ git commit -m '1'
 git push
 
 ###
-cd ../gitbook_study
-cp -r _book/* ../quding0308.coding.me
+# cd ../gitbook_study
+# cp -r _book/* ../quding0308.coding.me
 
-cd ../quding0308.coding.me
-git add .
-git commit -m '2'
-git push
+# cd ../quding0308.coding.me
+# git add .
+# git commit -m '2'
+# git push
 
