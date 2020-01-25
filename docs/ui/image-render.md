@@ -1,28 +1,4 @@
-## Image 加载流程
-
-```
-- (void)testImageLoad {
-    [self.view addSubview:self.imgView];
-    [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view).mas_offset(40);
-        make.left.mas_equalTo(self.view);
-        
-        make.width.height.mas_equalTo(50);
-    }];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        // 此时图片并没有解压缩
-        // 系统实际上只是在 Bundle 内查找到文件名，然后把这个文件名放到 UIImage 里返回，并没有进行实际的文件读取和解码。
-        UIImage *img = [UIImage imageNamed:@"image"];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            // 赋值时，开始从磁盘读取图片文件，解压缩，渲染图层
-            self.imgView.image = img;
-        });
-    });
-}
-```
+# Image 加载流程
 
 将生成的 UIImage 赋值给 UIImageView 后执行的流程：
 
@@ -31,9 +7,24 @@
    1. 分配内存缓冲区用于管理文件 IO 和解压缩操作
    2. 将文件数据从磁盘读到内存中
    3. 将压缩的图片数据解码成未压缩的位图形式，这是一个非常耗时的 CPU 操作
-   4. 最后 Core Animation 使用未压缩的位图数据渲染 UIImageView 的图层
+   4. 最后 Core Animation 使用未压缩的位图数据渲染 UIImageView 的图层 (GPU 操作)
 
-### 在子线程中强制解压缩生成image
+## 内存占用
+
+图片加载到内存中占用大小计算：
+
+```
+memeory size = width * height * 4  字节 
+```
+
+例如 2000 * 2000 像素的图片，在占用内存大小：2000 * 2000 * 4 / 1024 / 1024 = 15M
+
+jpg、png 等格式存储会影响占用硬盘大小和加载速度，不会影响内存占用大小。
+
+内存占用大小跟图片尺寸有关。
+
+
+## 在子线程中强制解压缩生成image
 
 图片解压缩的过程其实就是将图片的二进制数据转换成像素数据的过程。
 
@@ -136,9 +127,30 @@ CGImageRef YYCGImageCreateDecodedCopy(CGImageRef imageRef, BOOL decodeForDisplay
 CGBitmapContextCreate -> CGContextDrawImage -> CGBitmapContextCreateImage
 ```
 
-### 图片做压缩，去掉 alpha 通道
+## 图片做压缩，去掉 alpha 通道
 
 在 SD 中，无法在子线程解压带有 alpha 通道的图片
+
+## 图片渲染圆角
+
+### 使用系统的 
+
+
+### 使用 mask
+
+``` Swift
+public func kd_setRoundCorners(_ radius: CGFloat) {
+    let path = UIBezierPath.init(roundedRect: self.bounds, cornerRadius: radius)
+    let mask = CAShapeLayer()
+    mask.path = path.cgPath
+    self.layer.mask = mask
+}
+```
+
+### 异步绘制
+
+
+
 
 ### 参考
 - http://blog.leichunfeng.com/blog/2017/02/20/talking-about-the-decompression-of-the-image-in-ios/

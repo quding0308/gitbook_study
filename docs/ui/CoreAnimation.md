@@ -1,15 +1,14 @@
-## Core Animation
+# Core Animation
 
-```
-Core Animation provides high frame rates and smooth animations without burdening the CPU and slowing down your app. Most of the work required to draw each frame of an animation is done for you. You configure animation parameters such as the start and end points, and Core Animation does the rest, handing off most of the work to dedicated graphics hardware, to accelerate rendering.
-```
+>Core Animation provides high frame rates and smooth animations without burdening the CPU and slowing down your app. Most of the work required to draw each frame of an animation is done for you. You configure animation parameters such as the start and end points, and Core Animation does the rest, handing off most of the work to dedicated graphics hardware, to accelerate rendering.
+
 
 Core Animation 自身并不是一个绘图系统。它只是一个负责在硬件上合成和操纵应用内容的 Framework 。 Core Animation 的核心是图层对象，图层对象用于管理和操控你的应用内容。图层将捕获的内容放到一个位图中，图形硬件能够非常容易的操控你的位图。在大部分应用中，图层被作为一种管理视图内容的方式，但是你也可以创建标准的图层，这取决于你自身的需要。
 
 你使用Core Animation创建的大部分动画都包含对图层属性的更改。像视图一样，图层对象也具有边框矩形、坐标原点、尺寸、不透明度、变换矩阵以及许多其他面向可视的属性（如backgroundColor）。大部分这些属性的值发生了变化都将会触发隐式动画被创建。隐式动画是一种从旧属性值动画到新属性值的动画形式。
 
 
-### 相关类
+## 相关类
 
 - CATransaction 事务类,可以对多个layer的属性同时进行修改.它分隐式事务,和显式事务.
 - CAAnimationGroup 允许多个动画同时播放
@@ -19,25 +18,34 @@ Core Animation 自身并不是一个绘图系统。它只是一个负责在硬�
 - CAConstraintLayoutManager 约束布局管理器,是用来将多个CALayer进行布局的.各个CALayer是通过名称来区分,而布局属性是通过CAConstraint来设置的.
 
 
-### CATransaction
+## CAAnimation
 
-/* Transactions are CoreAnimation's mechanism for batching multiple layer-
- * tree operations into atomic updates to the render tree. Every
- * modification to the layer tree requires a transaction to be part of.
- *
- * CoreAnimation supports two kinds of transactions, "explicit" transactions
- * and "implicit" transactions.
- *
- * Explicit transactions are where the programmer calls `[CATransaction
- * begin]' before modifying the layer tree, and `[CATransaction commit]'
- * afterwards.
- *
- * Implicit transactions are created automatically by CoreAnimation when the
- * layer tree is modified by a thread without an active transaction.
- * They are committed automatically when the thread's run-loop next
- * iterates. In some circumstances (i.e. no run-loop, or the run-loop
- * is blocked) it may be necessary to use explicit transactions to get
- * timely render tree updates. */
+``` shell
+CAAnimation
+    - CAPropertyAnimation
+        - CABasicAnimation
+            - CASpringAnimation
+        - CAKeyframeAnimation
+    - CAAnimationGroup
+```
+
+
+## CATransaction
+
+>Transactions are CoreAnimation's mechanism for batching multiple layer-
+tree operations into atomic updates to the render tree. Every
+modification to the layer tree requires a transaction to be part of.
+CoreAnimation supports two kinds of transactions, "explicit" transactions
+and "implicit" transactions.
+Explicit transactions are where the programmer calls `[CATransaction
+begin]' before modifying the layer tree, and `[CATransaction commit]'
+afterwards.
+Implicit transactions are created automatically by CoreAnimation when the
+layer tree is modified by a thread without an active transaction.
+They are committed automatically when the thread's run-loop next
+iterates. In some circumstances (i.e. no run-loop, or the run-loop
+is blocked) it may be necessary to use explicit transactions to get
+timely render tree updates. */
 
 CATransaction 是 Core Animation 中的事务类，在 iOS 中的图层中，图层的每个改变都是事务的一部分。
 
@@ -94,7 +102,7 @@ M_PI_4/2)) }
 
 ```
 
-### CALayer
+## CALayer
 
 layer 内部维护着三分 layer tree
 
@@ -105,26 +113,24 @@ layer 内部维护着三分 layer tree
 
 #### 动画效果
 
-- size & position改变layer的位置及自身大小
-- transform改2D,3D情况下的现实效果
-- shadow改变阴影
-- border边框效果
-- opacity改其透明度
+- size & position 改变layer的位置及自身大小
+- transform 改2D, 3D情况下的现实效果
+- shadow 改变阴影
+- border 边框效果
+- opacity 改其透明度
 
-```
-//记得引入QuartzCore
-//基本
+``` Swift
+// 基本
 let ownStyle = CABasicAnimation(keyPath:"position.x")
 ownStyle.fromValue = -view.bounds.size.width/2
-ownStyle.toValue = view,bounds.size.width/2
+ownStyle.toValue = view.bounds.size.width/2
 ownStyle.duration = 0.5
 yourView.layer.addAnimation(ownStyle, forKey: nil)
-//入门，动画之间存在时间差，我们可以设置fillMode和beginTime来实现特定效果
+
+// 入门，动画之间存在时间差，我们可以设置fillMode和beginTime来实现特定效果
 ownStyle.beginTime = CACurrentMediaTime() + 0.3
 ownStyle.fillMode = KCAFillModeRemoved //default
-//kCAFillMode主要作用就是控制你动画在开始和结束时候的一些效果
-//进阶 CAAnimation delegate pattern
-func animationDidStop & animationDidStart
+
 //与block中的相类似，你也可以利用KVC特性设置相应内容
 ownStyle.setValue(yourView.layer, forKey:"layer")
 ownStyle.setValue("name", forKey:"form")
@@ -148,24 +154,23 @@ groupAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFuncti
 //这么只能一起做动画，这里内部没有时间顺序
 groupAnimation.animations = [oneAnimation, twoAnimation] 
 yourView.layer.addAnimation(groupAnimation, forKey: nil)
+
 //CAKeyFrame,关键帧动画Layer级别效果
-let wobble = CAKeyframeAnimation(keyPath: "transform.rotation") wobble.duration = 0.25
+let wobble = CAKeyframeAnimation(keyPath: "transform.rotation") 
+wobble.duration = 0.25
 wobble.repeatCount = 4
 //比View的keyFrame设置方便多了
 //values与keyTimes一一对应
 wobble.values = [0.0, -M_PI_4/4, 0.0, M_PI_4/4, 0.0]
-wobble.keyTimes = [0.0, 0.25, 0.5, 0.75, 1.0] heading.layer.addAnimation(wobble, forKey: nil)
+wobble.keyTimes = [0.0, 0.25, 0.5, 0.75, 1.0] 
+heading.layer.addAnimation(wobble, forKey: nil)
+
 //不过坑爹的是这样，比如CGPoint，CGSize，CGRect，CATransform3D，都要解包
 let move = CABasicAnimation(keyPath: "position")
 move.duration = 1.0
 move.fromValue = NSValue(CGPoint:CGPoint(x:100.0, y:100.0))
 move.toValue = NSValue(CGPoint:CGPoint(x:200.0, y:200.0))
 ```
-
-
-position
-bounds
-
 
 ### 参考
 - http://studentdeng.github.io/blog/2014/06/24/core-animation/
