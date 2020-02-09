@@ -31,11 +31,9 @@ App 可执行文件 和 动态库 都是 image 文件。每一个 image 文件�
 
 使用 ASLR 技术，每次 dylib 会加载到新的随机地址(actual_address)，代码和数据中原来指向的旧地址(preferred_address)。dyld 需要纠正新旧地址的偏差(slide)，这个过程就叫 rebase，做法就是把 dylib 中代码和数据的指针地址都加上这个偏移量。  
 
-> slide = actual_address - preferred_address
+rebase 操作需要把 image 读入内存，并对 dylib 中的指针地址纠正偏移量，rebase 主要瓶颈在 I/O 操作。
 
-rebase 操作：把 image 读入内存，并对 dylib 中的指针地址纠正偏移量。 rebase 主要瓶颈在 I/O 操作。
-
-binding 操作 是处理dylib中指向外部的指针。从 可执行文件中的 __LINKEDIT 中读取需要 bind 的指针 和 指针指向的符号，然后从符号表中查找对应实现，将实现存储到 __DATA 中的那个指针。 binding 操作需要大量 CPU 计算。
+binding 操作是处理dylib中指向外部的指针。从 可执行文件中的 __LINKEDIT 中读取需要 bind 的指针 和 指针指向的符号，然后从符号表中查找对应实现，将实现存储到 __DATA 中的那个指针。 binding 操作需要大量 CPU 计算。
 
 #### objc setup
 
@@ -52,7 +50,6 @@ category registration
 class 加载完后，会加载 category 。把 category 中定义的方法都加在到 方法列表中。
 
 **3. 保证每一个 selector 唯一**
-
 
 
 #### initializers

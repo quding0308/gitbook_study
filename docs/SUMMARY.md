@@ -157,6 +157,7 @@
     * [页面渲染](web/basic/render.md)
     * [页面加载优化](web/basic/web_optimize.md)
     * [json的使用](web/basic/json.md)
+    * [PWA](web/pwa.md)
 
 * [JavaScript](web/js/index.md)
     * [JavaScript 基础](web/js/js-extension.md)

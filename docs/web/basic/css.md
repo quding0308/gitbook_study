@@ -1,11 +1,11 @@
-## CSS
+# CSS
 Cascading Style Sheet 样式描述语言
 
 cascade 瀑布；级联；
 
 从内容中分离样式，有助于复用，更容易维护，同样的内容可以使用不同的样式。
 
-### 概要
+## 概要
 
 ```
 <link rel="stylesheet" href="style1.css">
@@ -13,36 +13,32 @@ cascade 瀑布；级联；
 
 一条CSS规则：
 
-```
-selector {  // 花括号中的部分为声明
+``` css
+selector {
     property：value;
     property: value;
 }
 ```
 
-### 层叠 和 继承
+## 层叠 和 继承
 
-#### 层叠
-1. 浏览器对HTML元素定义的默认样式
+### 层叠
+1. 浏览器对 HTML 元素定义的默认样式
 2. 开发者定义的样式
     1. 外联样式   style.css 
     2. 内联样式   在页面的头部定义，只在本页面生效
     3. 行内样式   定义在特定元素上
 
-#### 继承
+## 选择器 Selectors
 
-继承
+### tag selector
 
-### 选择器 Selectors
-
-#### tag selector(type selector)
-
-```
-body{
+``` css
+body {
     background-color: lightgray;
 }
 
-p{
+p {
     color: blue;
     text-decoration: underline;
 }
@@ -52,11 +48,10 @@ p{
 
 通过设置元素的 class 属性，可以为元素指定类名。类名由开发者自己指定。 文档中的多个元素可以拥有同一个类名。
 
-```
-.title {    // 以 . 开头声明
+``` css
+.title {
     color: yellow;
 }
-
 
 // html
 class selector 比 tag selector 优先级更高 
@@ -66,8 +61,8 @@ class selector 比 tag selector 优先级更高
 #### id selector
 通过设置元素的 id 属性为该元素制定ID。ID名由开发者指定。每个ID在文档中必须是唯一的。
 
-```
-#myname {   // 以 # 开头声明
+``` css
+#myname {
     color: purple;
 }
 
@@ -118,40 +113,35 @@ a:visited {
 
 #### 基于关系的选择器
 
-```
-// 后代选择器
+``` css
+<!-- 通用后代选择器 -->
 A E     
 元素A的任一后代元素E
 
-// 子选择器
+// 相邻后代选择器
 A > E
 元素A的任一子元素E(E必须紧挨着A)
+
+// 通用兄弟选择器
+B ~ E
+元素B之后的所有类型为E的兄弟元素
+B ~ *  表示 元素B之后的所有兄弟元素
 
 // 相邻兄弟选择器
 B + E
 元素B的任一下一个兄弟元素E(第一个兄弟元素如果是E，则起作用)  
 B + *   元素B的下一个兄弟元素 
 
-// 通用兄弟选择器
-B ~ E
-元素B之后的所有类型为E的兄弟元素
-
-B ~ *  表示 元素B之后的所有兄弟元素
-```
-
-demo：
-
-``` css
-// id 为data-table-1，table 中每行的第一个元素 为 bolder；第二个元素使用等宽字体。 
+/* demo */
+/* id 为data-table-1，table 中每行的第一个元素 为 bolder；第二个元素使用等宽字体。  */
 #data-table-1 td:first-child {font-weight: bolder;}
 #data-table-1 td:first-child + td {font-family: monospace;}
-
 
 a.homepage:hover, a.homepage:focus, a.homepage:active {
   background-color: #666;
 }
 
-// 使用CSS 创建下了菜单
+ /* 使用CSS 创建下了菜单 */
 div.menu-bar ul ul {
     display: none;
 }
@@ -160,32 +150,32 @@ div.menu-bar ul:hover ul {
 }
 ```
 
-#### 属性选择器
+### 属性选择器
 
 通过已经存在的属性名或属性值来匹配元素
 
-```
-// 存在 title 属性的 a 元素
+``` css
+/* 存在 title 属性的 a 元素 */
 a[title] {
     font-size: 2rem;
 }
 
-// 有 href 属性，并且值为 http://www.baidu.com 的 a 元素
+/* 有 href 属性，并且值为 http://www.baidu.com 的 a 元素 */
 a[href="http://www.baidu.com"] {
     font-style: bold;
 }
 
-// href 属性的值以 https:// 开头的 a 元素
+/* href 属性的值以 https:// 开头的 a 元素 */
 a[href^="https://"] {
     font-style: bold;
 }
 
-// href 属性的值以 .com 结尾的 a 元素
+/* href 属性的值以 .com 结尾的 a 元素 */
 a[href$=".com"] {
     font-style: bold;
 }
 
-// href 属性的值包含 baidu 字符的 a 元素
+/* href 属性的值包含 baidu 字符的 a 元素 */
 a[href*="baidu"] {
     font-style: bold;
 }
@@ -197,7 +187,7 @@ a[href*="baidu"] {
 表示带有以 attr 命名的属性的元素，属性值为“value”或是以“value-”为前缀（"-"为连字符，Unicode编码为U+002D）开头。典型的应用场景是用来来匹配语言简写代码（如zh-CN，zh-TW可以用zh作为value）。
 ```
 
-### 框属性
+## 框属性
 
 ``` css
 margin
@@ -208,7 +198,7 @@ border
 
 ```
 
-### 文字样式
+## 文字样式
 
 ``` css
 .class-font {
@@ -254,7 +244,6 @@ border
     word-spacing: 50px;
 } 
 ```
-
 
 ### 动画 Animation
 
@@ -313,14 +302,13 @@ p {
 
 ### CSS Grid and Flexbox layout
 
+网格布局和弹性布局的区别：
+- Flexbox 是一维布局（沿横向或纵向）
+- Grid 是二维布局（同时沿横向和纵向）
+
 参考：
 - https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Grid_Layout
 - https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout
-
-网格布局和弹性布局的区别：
-
-Flexbox 是一维布局（沿横向或纵向）
-Grid 是二维布局（同时沿横向和纵向）
 
 ### Flexbox
 
