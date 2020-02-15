@@ -44,13 +44,29 @@ Hello World!😁
         * synchronize 关键字
         * ARC 底层实现
         * autorelease 底层原理
-        * 
     * 第三方库源码分析
         * mars 使用
+<<<<<<< HEAD
         * SDImageView
     * 其他工具
         * CocoaPods 使用
         * fastlane 使用
+=======
+        * SDImageView 
+    * 其他工具
+        * CocoaPods 使用
+        * fastlane 使用
+    * UI 渲染
+        * 渲染原理
+        * 离屏渲染 
+        * UIView 层动画
+        * CALayer 层动画
+        * CALayer 子类
+        * CoreGraphics 绘制
+        * 富文本渲染 
+        * UICollectionView layout 布局
+        * 响应链 多个 scrollview 如何处理事件传递？
+>>>>>>> 89e9721b7dd39a0ab4f3a072cddb5bf2bac8cd06
 * App优化
     * 优化思路
         * 什么指标
