@@ -7,11 +7,13 @@
 * [计算机系统](computer/index.md)
     * [CPU](computer/cpu.md)
     * [汇编语言](computer/assembly_language.md)
-    * [POSIX](computer/posix.md)
     * [编程范式](computer/programing_paradigm.md)
     * [FSM 状态机](computer/fsm_engine.md)
     * [同步与异步](computer/sync_async.md)
     * [并发](computer/concurrency.md)
+    * [POSIX](computer/posix.md)
+    * [C语言](computer/c.md)
+    * [C语言内存模型](computer/memorymodel.md)
 
 * [网络](network/index.md)
     * [common](network/comm.md)
@@ -101,6 +103,7 @@
       * [Swift与ObjC比较](oc/keyword/swift-oc.md)
       * [音频](oc/keyword/audio.md)
       * [NSDictionary](oc/keyword/NSDictionary.md)
+      * [alloc 与 new](oc/keyword/allocnew.md)
 
 * [Swift](swift/index.md)
     * [Closure](swift/closure.md)
@@ -118,7 +121,6 @@
     * [Mach-O](ios/basic/macho.md)
     * [签名流程](ios/basic/signature.md)
     * [LinkMap文件](ios/basic/linkmap.md)
-    * [C语言](ios/basic/c.md)
     * [iOS 网络相关](ios/basic/ios_network.md)
     * [正则表达式](ios/basic/rejex.md)
 
